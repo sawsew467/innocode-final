@@ -7,7 +7,6 @@ interface IProps {
 }
 
 function MessageDialog({ htmlMessage }: IProps) {
-
     const {openMessageDiaolog, setOpenMessageDiaolog} = useStore((state) => ({
         openMessageDiaolog: state.openMessageDiaolog,
         setOpenMessageDiaolog: state.setOpenMessageDiaolog
