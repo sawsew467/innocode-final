@@ -19,7 +19,7 @@ const useStore = create<IState>((set) => ({
     })),
   //
   targetPoint: {
-    x: -5,
+    x: -10,
     y: 0,
     z: 0,
   },
