@@ -39,7 +39,7 @@ const TextToSpeedAI = forwardRef<ChildRef, TextToSpeedAIProps>((props, ref) => {
   const [text, setText] = useState("");
   const [model, setModel] = useState("tts-1");
   const [voice, setVoice] = useState("alloy");
-  const [speed, setSpeed] = useState(0.9);
+  const [speed, setSpeed] = useState(1);
   const [audioUrl, setAudioUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
