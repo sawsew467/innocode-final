@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -19,9 +23,12 @@ const config = {
     },
     fontFamily: {
       title: ["Montserrat", "sans-serif"],
-      time :["Libre Baskerville","serif"]
+      time: ["Libre Baskerville", "serif"],
     },
     extend: {
+      backgroundImage: {
+        background_library: "url('/images/background_frames.png')",
+      },
       transitionDuration: {
         "2000": "2000ms",
         "3000": "3000ms",
@@ -85,11 +92,22 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        "custom": "0px 3px 10px 0px rgba(0, 0, 0, 0.13)",
-      }
+        custom: "0px 3px 10px 0px rgba(0, 0, 0, 0.13)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("tailwindcss-animated"), require('tailwind-scrollbar-hide')],
 } satisfies Config;
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+ 
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;
