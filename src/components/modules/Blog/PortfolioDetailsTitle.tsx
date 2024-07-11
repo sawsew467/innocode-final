@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import React from "react";
 import Card from "../HomePage/FeaturedMemberSession/Dedicated/card";
+import Image from "next/image";
 
 interface PortfolioDetailsTitleProps {
   portfolio: {
@@ -29,17 +30,12 @@ const PortfolioDetailsTitle: React.FC<PortfolioDetailsTitleProps> = ({
               </h2>
             </div>
           </div>
-          <img
+          <Image
             src="/images/shape/shape_175.svg"
             alt="shape"
             className="h-32 w-32"
           />
         </div>
-        {/* <img
-        src="/images/shape/shape_172.svg"
-        alt="shape"
-        className="translate-y-[-80px] "
-      /> */}
       </div>
     </div>
   );

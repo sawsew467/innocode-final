@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { X } from "lucide-react";
 
-import fpt from "@public/timeline/thpt_fpt_3.jpg";
+import fpt from "@public/images/timeline/thpt_fpt_3.jpg";
 type InterfaceContent = {
   title: string;
   image: StaticImageData;

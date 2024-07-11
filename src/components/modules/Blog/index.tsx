@@ -6,7 +6,7 @@ import { TracingBeam } from "./tracing-beam";
 import PortfolioDetailsTitle from "./PortfolioDetailsTitle";
 import Banner from "./Banner";
 import Body from "./Body";
-import fpt from "@public/timeline/FPTU-CSVC1thumb.webp";
+import fpt from "@public/images/timeline/FPTU-CSVC1thumb.webp";
 export function BlogsModule() {
   return (
     <div>

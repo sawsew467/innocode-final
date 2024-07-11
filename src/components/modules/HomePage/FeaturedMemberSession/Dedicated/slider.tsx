@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Card from "./card";
 import { Earth } from "lucide-react";
+import { StaticImageData } from "next/image";
 
-
-type Tab = {
+type InterfaceData = {
   title: string;
   value: string;
-  content?: string | React.ReactNode | any;
+  decsrition: string;
+  name: string;
+  image: StaticImageData;
 };
 
 export const Tabs = ({
@@ -20,14 +22,14 @@ export const Tabs = ({
   tabClassName,
   contentClassName,
 }: {
-  tabs: Tab[];
+  tabs: InterfaceData[];
   containerClassName?: string;
   activeTabClassName?: string;
   tabClassName?: string;
   contentClassName?: string;
 }) => {
-  const [active, setActive] = useState<Tab>(propTabs[0]);
-  const [tabs, setTabs] = useState<Tab[]>(propTabs);
+  const [active, setActive] = useState<InterfaceData>(propTabs[0]);
+  const [tabs, setTabs] = useState<InterfaceData[]>(propTabs);
 
   const moveSelectedTabToTop = (idx: number) => {
     const newTabs = [...propTabs];
@@ -36,15 +38,13 @@ export const Tabs = ({
     setTabs(newTabs);
     setActive(newTabs[0]);
   };
-
   const [hovering, setHovering] = useState(false);
-
   return (
     <div className="container flex justify-between">
       <div
         className={cn(
-          "flex flex-col items-start pl-[3%]  absolute top-32 left-0 z-[2] justify-start [perspective:1000px] overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
-          containerClassName
+          "no-visible-scrollbar absolute left-0 top-32 z-[2] flex w-full max-w-full flex-col items-start justify-start overflow-auto pl-[3%] [perspective:1000px] sm:overflow-visible",
+          containerClassName,
         )}
       >
         {propTabs.map((tab, idx) => (
@@ -55,7 +55,7 @@ export const Tabs = ({
             }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
+            className={cn("relative rounded-full px-4 py-2", tabClassName)}
             style={{
               transformStyle: "preserve-3d",
             }}
@@ -63,31 +63,33 @@ export const Tabs = ({
             {active.value === tab.value && (
               <motion.div
                 layoutId="clickedbutton"
-                transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                transition={{
+                  type: "spring",
+                  bounce: 0.3,
+                  duration: 0.6,
+                  damping: 8,
+                }}
                 className={cn(
-                  "absolute inset-0 z-[20] w-8 h-8 rounded-full ",
-                  activeTabClassName
+                  "absolute inset-0 z-[20] h-8 w-8 rounded-full",
+                  activeTabClassName,
                 )}
               >
-                  <Earth className="duration-5000 w-8 h-8 animate-spin text-primary" />
-                </motion.div>
+                <Earth className="h-8 w-8 animate-spin text-primary duration-5000" />
+              </motion.div>
             )}
-            <div className="relative rounded-2xl border-4 border-background w-8 h-8 text-black">
-             
-            </div>
+            <div className="relative h-8 w-8 rounded-2xl border-4 border-background text-black"></div>
           </button>
         ))}
       </div>
-      <div className=" w-full h-[560px]">
-      <FadeInDiv
-        tabs={tabs}
-        active={active}
-        key={active.value}
-        hovering={hovering}
-        className={cn("", contentClassName)}
-      />
+      <div className="h-[560px] w-full">
+        <FadeInDiv
+          tabs={tabs}
+          active={active}
+          key={active.value}
+          hovering={hovering}
+          className={cn("", contentClassName)}
+        />
       </div>
-    
     </div>
   );
 };
@@ -99,36 +101,67 @@ export const FadeInDiv = ({
 }: {
   className?: string;
   key?: string;
-  tabs: Tab[];
-  active: Tab;
+  tabs: InterfaceData[];
+  active: InterfaceData;
   hovering?: boolean;
 }) => {
-  const isActive = (tab: Tab) => {
+  const isActive = (tab: InterfaceData) => {
     return tab.value === tabs[0].value;
   };
   return (
-    <div className="relative w-full">
-      {tabs.map((tab, idx) => (
-        <motion.div
-          key={tab.value}
-          layoutId={tab.value}
-          style={{
-            scale: 1 - idx * 0.03,
-            top: hovering ? idx * -30 : 0,
-            zIndex: -idx,
-            opacity: idx < 3 ? 1 - idx * 0.1 : 0,
-          }}
-          animate={{
-            y: isActive(tab) ? [0, 40, 0] : 0,
-          }}
-          className={cn("w-fit h-fit absolute top-0 left-0", className)}
-        >
-          {/* {tab.content} */}
-         <div className="w-fit h-fit bg-white border-[6px]  rounded-sm border-background">
-         <Card/>
-         </div>
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      className="relative w-full"
+      key={tabs[0].value}
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{
+        type: "spring",
+        duration: 3.5,
+      }}
+    >
+      {tabs.map((tab, idx) => {
+        const isActived = isActive(tab);
+        return (
+          <motion.div
+            key={tab.value}
+            layoutId={tab.value}
+            style={
+              {
+                // zIndex: isActived ? 10 : -idx,
+              }
+            }
+            initial={{
+              top: -idx * 10,
+              zIndex: -idx,
+              opacity: 1,
+              y: -idx * 10,
+              x: idx * 15,
+            }}
+            animate={{
+              top: isActived ? 0 : -idx * 10,
+              zIndex: isActived ? 10 : -idx,
+              opacity: isActived ? [0.9, 1] : [0.9, 1],
+              y: isActived ? 0 : -idx * 10,
+              x: isActived ? 0 : idx * 15,
+            }}
+            transition={{
+              type: "spring",
+              duration: 1,
+              delay: 0.1,
+            }}
+            className={cn("absolute left-0 top-0 h-fit w-fit", className)}
+          >
+            {/* {tab.content} */}
+            <div className="h-fit w-fit rounded-sm border-[6px] border-background bg-white">
+              <Card tab={tab} />
+            </div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
   );
 };
