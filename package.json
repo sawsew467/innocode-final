@@ -9,6 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@deepgram/sdk": "^3.3.0",
+    "@langchain/openai": "^0.0.28",
+    "ai": "^3.0.23",
+    "@radix-ui/react-slot": "^1.1.0",
+    "langchain": "^0.1.36",
+    "openai": "^4.37.1",
+    "react-device-detect": "^2.2.3",    
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",

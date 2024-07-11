@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { BotMessageSquare, MoveLeft } from "lucide-react";
 import {
@@ -13,13 +15,46 @@ import logo from "@public/images/logo-white.png";
 import ChatHeader from "./ChatHeader";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
+import { useEffect, useRef } from "react";
+
+import { useChat } from "ai/react";
+
+interface ChildRef {
+  handleCheck: (newMessage: string) => void;
+}
 
 function Chat() {
+  const childRef = useRef<ChildRef>(null);
+
+  const { messages, input, append, handleInputChange, handleSubmit } = useChat({
+    api: "api/ex4",
+    onError: (e) => {
+      console.log(e);
+    },
+    onFinish(message) {
+      if (childRef.current) {
+        childRef.current.handleCheck(message.content); // Call the method in the child component with a new message
+      }
+    },
+  });
+
+  const handleSubmitUser = (data:string) => {
+    if (data.trim() !== '') {
+        append({ content: data, role: 'user' });
+        return true;
+       
+    }
+    return false;
+};
+
+  const chatParent = useRef<HTMLUListElement>(null);
+
+
   return (
     <div className="fixed bottom-10 right-20 z-50">
       <Dialog>
         <DialogTrigger asChild>
-          <div className="hover:bg-primary-dark cursor-pointer rounded-full bg-primary px-4 py-4 transition-all">
+          <div className="cursor-pointer rounded-full bg-primary px-4 py-4 transition-all hover:bg-primary-dark">
             <div className="flex items-center gap-2">
               <BotMessageSquare className="text-white" />
             </div>
@@ -42,8 +77,17 @@ function Chat() {
             </div>
             <div className="flex flex-[2] flex-col rounded-md bg-white">
               <ChatHeader />
-              <ChatBody />
-              <ChatFooter />
+              <ChatBody
+                messages={messages}
+                childRef={childRef}
+                chatParent={chatParent}
+              />
+              <ChatFooter
+                handleSubmit={handleSubmit}
+                input={input}
+                handleInputChange={handleInputChange}
+                handleSubmitUser={handleSubmitUser}
+              />
             </div>
           </div>
         </DialogContent>
