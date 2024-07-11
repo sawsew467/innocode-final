@@ -96,9 +96,9 @@ function GrowUpPlant({ isLove, closeModal, setIsOpenCamera }: IProps) {
         {currentStage === plants.length && (
           (
             <div className="absolute bottom-[10px] animate-fade w-full">
-              <p className="text-center text-primary">{
-                  "Cảm ơn bạn đã giúp cây xanh tốt trở lại 💚"
-                }</p>
+              <p className="text-center text-primary">
+                  Cảm ơn bạn đã giúp cây xanh tốt trở lại 💚
+                </p>
             </div>
           )
         ) }
