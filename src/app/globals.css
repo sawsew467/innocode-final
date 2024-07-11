@@ -195,3 +195,6 @@
   color: #ffffff; /* Text color of the selected text */
 }
 
+.smooth-transition {
+  transition: height 0.3s ease-in-out; /* Adjust timing and easing function as needed */
+}

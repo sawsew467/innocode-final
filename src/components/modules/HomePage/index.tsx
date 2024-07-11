@@ -10,7 +10,7 @@ import TimeLineSection from "./TimeLineSection";
 function HomePageModule() {
   return (
     <>
-      {/* <CommonSection /> */}
+      {/* <CommonSection />  */}
       <HeroSection />
       <IntroductionSection />
       <TimeLineSection />
