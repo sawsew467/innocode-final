@@ -17,7 +17,6 @@ function HeaderSticky() {
   const { scrollDir } = useDetectScroll();
 
   const handleScroll = useCallback(() => {
-    console.log("🚀 ~ handleScroll ~ window.scrollY:", window.scrollY);
     if (window.scrollY > 10) {
       setIsInHeader(false);
     } else {
