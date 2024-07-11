@@ -26,11 +26,11 @@ const ChatFooter: React.FC<ChatFooterProps> = ({
     }
   };
   
-  const [isVoiceChatStop, setIsVoiceChatStop] = useState(false);
+  const [isVoiceChatStop, setIsVoiceChatStop] = useState(true);
 
   const handleDisalbeVoiceChat = () =>{
-    if(isVoiceChatStop == false)
-      setIsVoiceChatStop(true);
+    setIsVoiceChatStop(true);
+      
   }
 
   return (
