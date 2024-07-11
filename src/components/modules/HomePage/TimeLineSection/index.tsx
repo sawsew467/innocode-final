@@ -262,13 +262,17 @@ const TimeLineSection = () => {
 
   useEffect(() => {
     const handleView = () => {
-      if (!isViewed)
+      if (
+        view &&
+        Math.abs(window.scrollY - (ref?.current?.offsetTop ?? 0)) < 80
+      ) {
         window.scrollTo({
           top: ref?.current?.offsetTop,
           left: 0,
           behavior: "smooth",
         });
-      setViewed(true);
+        setViewed(true);
+      }
     };
     window.addEventListener("scrollend", handleView);
     return () => window.removeEventListener("scrollend", handleView);
@@ -422,9 +426,12 @@ const TimeLineSection = () => {
             <motion.div
               initial={{
                 filter: "blur(5px)",
+                opacity: 0,
               }}
               animate={{
                 filter: "blur(0px)",
+                opacity: 1,
+
                 transition: {
                   type: "spring",
                   duration: 4,
@@ -432,6 +439,7 @@ const TimeLineSection = () => {
               }}
               exit={{
                 filter: "blur(5px)",
+                opacity: 0,
                 transition: {
                   type: "spring",
                   duration: 0.75,
