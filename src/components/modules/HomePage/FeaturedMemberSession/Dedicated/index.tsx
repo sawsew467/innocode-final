@@ -27,7 +27,7 @@ const fakeTabs = [
   
 function Dedicated() {
   return (
-    <div className='w-full mx-auto'>
+    <div className='w-full mx-auto my-[80px]'>
          <Tabs tabs={fakeTabs}/> 
     </div>
  

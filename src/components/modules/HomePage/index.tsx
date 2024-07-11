@@ -13,8 +13,8 @@ function HomePageModule() {
       {/* <CommonSection /> */}
       <HeroSection />
       <IntroductionSection />
-      <FeaturedMemberSession/>
       <TimeLineSection />
+      <FeaturedMemberSession/>
       <ContributorSection/>
       <CommunityContributions/>
       <CommonQuestions/>
