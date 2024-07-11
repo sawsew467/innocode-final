@@ -10,7 +10,7 @@ function Frame() {
         rotation={[0, -Math.PI / 2, 0]}
         transform
         zIndexRange={[0, 0]}
-        occlude="blending"
+        // occlude="blending"
       >
         <div className="flex flex-col items-center gap-10 bg-none">
           <div className="select-none bg-slate-950 p-2">
@@ -24,16 +24,10 @@ function Frame() {
               />
             </div>
           </div>
+          <p className="font-time select-none text-xl font-semibold">
+            Năm 1999
+          </p>
         </div>
-      </Html>
-      <Html
-        position={[16, 4, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
-        transform
-        zIndexRange={[0, 0]}
-        occlude="blending"
-      >
-        <p>Hello</p>
       </Html>
     </>
   );
