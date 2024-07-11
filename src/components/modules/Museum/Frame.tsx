@@ -10,6 +10,7 @@ function Frame() {
         rotation={[0, -Math.PI / 2, 0]}
         transform
         zIndexRange={[0, 0]}
+
         // occlude="blending"
       >
         <div className="flex flex-col items-center gap-10 bg-none">
