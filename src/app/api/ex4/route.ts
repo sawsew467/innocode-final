@@ -17,7 +17,8 @@ const loader = new JSONLoader(
     [
         "/FPT_Education/history",
         "/FPT_Education/anniversary",
-        "/FPT_Education/development"
+        "/FPT_Education/development",
+         "/FPT_Education/lasted_event"
     ]
 );
 
@@ -36,9 +37,10 @@ const formatMessage = (message: VercelChatMessage) => {
     return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `Answer the user's questions based only on the following context and You play the role of an experienced and funny tour guide.
+const TEMPLATE = `Answer the user's questions based only on the following context and You play the role of an experienced and funny virtual assistant and please send a summary and easy to understand.
 Your answers will be formatted with paragraph breaks using the <br/>; tag and line breaks with the <br/>; tag to ensure readability and clarity for readers. 
-In particular, there is no distinction between upper and lower case letters and your answer is always translated into Vietnamese :
+in your chat history if I haven't given you the name. Ask my name and remember it.
+In particular, there is no distinction between upper and lower case letters and your answer is always translated into Vietnamese and please send a summary not over 100 word and easy to understand:
 ==============================
 Context: {context}
 ==============================
