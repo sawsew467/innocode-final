@@ -1,6 +1,10 @@
 import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -23,6 +27,9 @@ const config = {
       time: ["Libre Baskerville", "serif"],
     },
     extend: {
+      backgroundImage: {
+        background_library: "url('/images/background_frames.png')",
+      },
       transitionDuration: {
         "2000": "2000ms",
         "3000": "3000ms",
@@ -96,7 +103,21 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    addVariablesForColors
+  ],
 } satisfies Config;
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+ 
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;
