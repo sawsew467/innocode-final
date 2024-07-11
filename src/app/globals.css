@@ -184,6 +184,7 @@
 .no-visible-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 ::selection {
   background: #569f58; /* Background color of the selected text */
   color: #ffffff; /* Text color of the selected text */
