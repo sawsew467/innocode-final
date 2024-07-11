@@ -41,18 +41,6 @@ const PortfolioDetailsTitle: React.FC<PortfolioDetailsTitleProps> = ({
         className="translate-y-[-80px] "
       /> */}
       </div>
-
-      <Carousel className="w-full max-w-xs px-[10%]">
-        <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1">
-                <div>hiii</div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
     </div>
   );
 };

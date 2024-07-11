@@ -16,11 +16,7 @@ export const TracingBeam = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const { scrollYProgress } = useScroll();
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
@@ -47,10 +43,7 @@ export const TracingBeam = ({
   );
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn("relative mx-auto h-full w-full max-w-4xl", className)}
-    >
+    <motion.div className={cn("container relative h-full w-full", className)}>
       <div className="absolute -left-4 top-3 md:-left-20">
         <motion.div
           transition={{
