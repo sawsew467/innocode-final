@@ -65,49 +65,49 @@ const TextToSpeedAI = forwardRef<ChildRef, TextToSpeedAIProps>((props, ref) => {
   }));
 
   const generateSpeech = async (data: string) => {
-    setIsLoading(true);
-    setError("");
-    try {
-      const response = await fetch("https://api.openai.com/v1/audio/speech", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${"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"}`,
-        },
-        body: JSON.stringify({
-          model,
-            input: "[Vietnamese]"+ data,
-          voice,
-          speed,
-          language: "vi",
-        }),
-      });
+    // setIsLoading(true);
+    // setError("");
+    // try {
+    //   const response = await fetch("https://api.openai.com/v1/audio/speech", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${"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"}`,
+    //     },
+    //     body: JSON.stringify({
+    //       model,
+    //         input: "[Vietnamese]"+ data,
+    //       voice,
+    //       speed,
+    //       language: "vi",
+    //     }),
+    //   });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to generate speech");
-      }
+    //   if (!response.ok) {
+    //     const errorData = await response.json();
+    //     throw new Error(errorData.message || "Failed to generate speech");
+    //   }
 
-      const audioBlob = await response.blob();
-      const url = URL.createObjectURL(audioBlob);
-      setAudioUrl(url);
+    //   const audioBlob = await response.blob();
+    //   const url = URL.createObjectURL(audioBlob);
+    //   setAudioUrl(url);
 
-      const newHistoryItem: HistoryItem = {
-        id: Date.now(),
-        text,
-        model,
-        voice,
-        speed,
-        timestamp: new Date().toLocaleString(),
-        audioUrl: url,
-      };
-      setHistory((prevHistory) => [newHistoryItem, ...prevHistory]);
-    } catch (error) {
-      console.error("Error generating speech:", error);
-      setError((error as Error).message || "An unexpected error occurred");
-    } finally {
-      setIsLoading(false);
-    }
+    //   const newHistoryItem: HistoryItem = {
+    //     id: Date.now(),
+    //     text,
+    //     model,
+    //     voice,
+    //     speed,
+    //     timestamp: new Date().toLocaleString(),
+    //     audioUrl: url,
+    //   };
+    //   setHistory((prevHistory) => [newHistoryItem, ...prevHistory]);
+    // } catch (error) {
+    //   console.error("Error generating speech:", error);
+    //   setError((error as Error).message || "An unexpected error occurred");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const handleEnded = () => {

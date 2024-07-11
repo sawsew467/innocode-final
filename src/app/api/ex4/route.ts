@@ -14,8 +14,17 @@ import { CharacterTextSplitter } from 'langchain/text_splitter';
 
 const loader = new JSONLoader(
     "src/data/states.json",
-    ["/state", "/code", "/nickname", "/website", "/admission_date", "/admission_number", "/capital_city", "/capital_url", "/population", "/population_rank", "/constitution_url", "/twitter_url"],
+    [
+        "/FPT_Education/history",
+        "/FPT_Education/anniversary",
+        "/FPT_Education/development"
+    ]
 );
+
+// const loader = new JSONLoader(
+//     "src/data/states.json",
+//     ["/state", "/code", "/nickname", "/website", "/admission_date", "/admission_number", "/capital_city", "/capital_url", "/population", "/population_rank", "/constitution_url", "/twitter_url"],
+// );
 
 export const dynamic = 'force-dynamic'
 
@@ -75,7 +84,11 @@ export async function POST(req: Request) {
             streaming: true,
             verbose: true,
         });
-
+        console.log('====================================');
+        console.log(prompt);
+        console.log(docs)
+        console.log('====================================');
+ 
         /**
        * Chat models stream message chunks rather than bytes, so this
        * output parser handles serialization and encoding.
@@ -92,6 +105,8 @@ export async function POST(req: Request) {
             model,
             parser,
         ]);
+
+      
 
         // Convert the response into a friendly text-stream
         const stream = await chain.stream({
