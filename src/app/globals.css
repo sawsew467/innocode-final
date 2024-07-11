@@ -82,6 +82,105 @@
   }
 }
 
+
+.comma-pos {
+  top: -40px;
+  left: -121px;
+}
+
+
+.tran5s {
+  transition: all 0.5s ease-in-out;
+}
+
+
+.g-control-nav-two li {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #313131;
+  display: inline-block;
+  padding: 0 8px;
+  line-height: 31px;
+  border: 2px solid transparent;
+  margin: 0 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.g-control-nav-two li.is-checked {
+  background-color: #042019 ;
+  color: white;
+}
+
+.hvr-shutter-out .img-meta {
+  overflow: hidden;
+  z-index: 5;
+}
+.hvr-shutter-out .img-meta:before {
+  content: "";
+  position: absolute;
+  background: #00332A;
+  top: 50%;
+  bottom: 50%;
+  left: -45%;
+  right: -45%;
+  transform: rotate(45deg);
+  transition: all 0.5s ease-in-out;
+  z-index: 2;
+}
+.hvr-shutter-out .img-meta:hover:before {
+  top: -45%;
+  bottom: -45%;
+}
+.hvr-shutter-out .img-meta .caption {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition-delay: 0s;
+  z-index: 3;
+  transition: all 0.35s ease;
+}
+.hvr-shutter-out .img-meta .caption .tag {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 5px;
+}
+.hvr-shutter-out .img-meta .caption .pj-title {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+.hvr-shutter-out .img-meta .caption .pj-title:hover {
+  text-decoration: underline;
+}
+.hvr-shutter-out .img-meta:hover .caption {
+  opacity: 1;
+  transition-delay: 0.105s;
+}
+.hvr-shutter-out .img-meta .img-meta {
+  position: relative;
+  z-index: 1;
+}
+.hvr-shutter-out .img-meta:hover img {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+ 
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 ::selection {
   background: #569f58; /* Background color of the selected text */
   color: #ffffff; /* Text color of the selected text */
