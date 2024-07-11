@@ -1,3 +1,4 @@
+import useStore from "@/store";
 import Plant from "@public/svgr/Plant";
 import PlantEight from "@public/svgr/Prames/PlantEight";
 import PlantFive from "@public/svgr/Prames/PlantFive";
@@ -8,99 +9,99 @@ import PlantSeven from "@public/svgr/Prames/PlantSeven";
 import PlantSix from "@public/svgr/Prames/PlantSix";
 import PlantThree from "@public/svgr/Prames/PlantThree";
 import PlantTwo from "@public/svgr/Prames/PlantTwo";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface IProps {
   isLove: boolean;
-  showText: string;
+  closeModal: () => void;
+  setIsOpenCamera: (openCamera: boolean) => void;
 }
 
-function GrowUpPlant({ isLove, showText }: IProps) {
+const plants = [
+  { component: PlantOne, width: 175, bottom: 42, left: 126, delay: 0 },
+  { component: PlantTwo, width: 32, bottom: 86, left: 190, delay: 300 },
+  { component: PlantThree, width: 185, bottom: 99.5, left: 34, delay: 600 },
+  { component: PlantFour, width: 171, bottom: 92.5, left: 191, delay: 900 },
+  { component: PlantFive, width: 166, bottom: 140, left: 194.5, delay: 1200 },
+  { component: PlantSix, width: 150, bottom: 167, left: 55.5, delay: 1500 },
+  { component: PlantSeven, width: 105, bottom: 178, left: 106, delay: 1800 },
+  { component: PlantEight, width: 94, bottom: 210, left: 197, delay: 2400 },
+  { component: PlantNine, width: 102, bottom: 228, left: 155, delay: 2900 },
+];
+
+function GrowUpPlant({ isLove, closeModal, setIsOpenCamera }: IProps) {
+  const [currentStage, setCurrentStage] = useState(0);
+  const [showText, setShowText] = useState<string | null>(null);
+  console.log(showText);
+  console.log(currentStage);
+  useEffect(() => {
+    if (isLove) {
+      const interval = setInterval(() => {
+        setCurrentStage((prev) => {
+          if (prev < plants.length) {
+            return prev + 1;
+          } else {
+            clearInterval(interval);
+            return prev;
+          }
+        });
+      }, 500);
+
+      return () => clearInterval(interval);
+    }
+  }, [isLove]);
+
+  const { setOpenMessageDiaolog } = useStore((state) => ({
+    setOpenMessageDiaolog: state.setOpenMessageDiaolog,
+  }));
+  useEffect(() => {
+    if (currentStage === plants.length) {
+      setTimeout(() => {
+        closeModal();
+        setIsOpenCamera(false);
+        setOpenMessageDiaolog(true);
+      }, 8000);
+    }
+  }, [currentStage]);
+
   return (
     <div className="h-fit w-fit">
       <div className="relative">
-        <Plant></Plant>
-        {isLove && (
-          <div className="absolute bottom-[42px] left-[126px] animate-fade">
-            <PlantOne width={175} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[86px] left-[190px] animate-fade"
-            style={{ animationDelay: "300ms" }}
-          >
-            <PlantTwo width={32} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[99.5px] left-[34px] animate-fade"
-            style={{ animationDelay: "600ms" }}
-          >
-            <PlantThree width={185} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[92.5px] left-[191px] animate-fade"
-            style={{ animationDelay: "900ms" }}
-          >
-            <PlantFour width={171} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[140px] left-[194.5px] animate-fade"
-            style={{ animationDelay: "1200ms" }}
-          >
-            <PlantFive width={166} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[167px] left-[55.5px] animate-fade"
-            style={{ animationDelay: "1500ms" }}
-          >
-            <PlantSix width={150} />
-          </div>
-        )}
-        {isLove && (
-          <div
-            className="absolute bottom-[178px] left-[106px] animate-fade"
-            style={{ animationDelay: "1800ms" }}
-          >
-            <PlantSeven width={105} />
-          </div>
-        )}
-
-        {isLove && (
-          <div
-            className="absolute bottom-[210px] left-[197px] animate-fade"
-            style={{ animationDelay: "2400ms" }}
-          >
-            <PlantEight width={94} />
-          </div>
-        )}
-
-        {isLove && (
-          <div
-            className="absolute bottom-[228px] left-[155px] animate-fade"
-            style={{ animationDelay: "2900ms" }}
-          >
-            <PlantNine width={102} />
-          </div>
-        )}
-
-        {
-          isLove && (
+        <Plant />
+        {plants.slice(0, currentStage).map((plant, index) => {
+          const PlantComponent = plant.component;
+          return (
             <div
-              className="absolute bottom-[10px]  animate-fade w-full"
+              key={index}
+              className="absolute animate-fade"
+              style={{
+                bottom: `${plant.bottom}px`,
+                left: `${plant.left}px`,
+                animationDelay: `${plant.delay}ms`,
+              }}
             >
-              <p className="text-center text-primary">{showText}</p>
+              <PlantComponent width={plant.width} />
+            </div>
+          );
+        })}
+        {isLove && (
+          (
+            <div className="absolute bottom-[10px] animate-fade w-full">
+              <p className="text-center text-primary">{
+                  currentStage < 9 ? "Bạn đang giúp cây xanh sắc trở lại 💚" : "Cảm ơn bạn đã giúp cây xanh tốt trở lại 💚"
+                }</p>
             </div>
           )
-        }
+        ) }
+        {currentStage === plants.length && (
+          (
+            <div className="absolute bottom-[10px] animate-fade w-full">
+              <p className="text-center text-primary">{
+                  "Cảm ơn bạn đã giúp cây xanh tốt trở lại 💚"
+                }</p>
+            </div>
+          )
+        ) }
       </div>
     </div>
   );

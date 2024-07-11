@@ -48,6 +48,7 @@ function Camera({ openCamera, closeModal, setIsOpenCamera }: IProps) {
       const vision = await FilesetResolver.forVisionTasks(
         "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm",
       );
+
       const gest = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
           modelAssetPath:
@@ -212,6 +213,7 @@ function Camera({ openCamera, closeModal, setIsOpenCamera }: IProps) {
           Math.abs(landmark0_8.y - prevButton.y) <= 0.06
         ) {
         } else {
+          setUserAction("");
         }
       }
 
@@ -237,6 +239,7 @@ function Camera({ openCamera, closeModal, setIsOpenCamera }: IProps) {
           Math.abs(landmark1_8.y - prevButton.y) <= 0.06
         ) {
         } else {
+          setUserAction("");
         }
       }
       if (
@@ -299,34 +302,13 @@ function Camera({ openCamera, closeModal, setIsOpenCamera }: IProps) {
     }
   }, [openCamera]);
 
-  const [showText, setShowText] = useState<string | null>(null);
-  const {openMessageDiaolog, setOpenMessageDiaolog} = useStore((state) => ({
-    openMessageDiaolog: state.openMessageDiaolog,
-    setOpenMessageDiaolog: state.setOpenMessageDiaolog
-  }));
-
-  useEffect(() => { 
-    if (userAction === "love") {
-      setShowText("Cây đang hồi phục sắc xanh");
-      const timer = setTimeout(() => {
-        setShowText("Cảm ơn bạn đã giúp đỡ!");
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [userAction]);
 
   useEffect(() => {
     if (userAction === "love") {
       setShowLove(true);
-      const timer = setTimeout(() => {
-        // setShowLove(false);
-        setOpenMessageDiaolog(true);
-        closeModal();
-        setIsOpenCamera(false);
-      }, 5000);
-
-      return () => clearTimeout(timer);
+    
+    } else {
+      setShowLove(false);
     }
   }, [userAction]);
 
@@ -379,7 +361,7 @@ function Camera({ openCamera, closeModal, setIsOpenCamera }: IProps) {
         ) : (
           <div className="w-[50%] bg-background border-3 rounded-lg flex items-center justify-center smooth-transition">
             <div>
-              <GrowUpPlant showText={showText!} isLove={showLove} />
+              <GrowUpPlant setIsOpenCamera={setIsOpenCamera} closeModal={closeModal} isLove={showLove} />
             </div>
           </div>
         )}
