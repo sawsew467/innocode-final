@@ -23,9 +23,12 @@ const config = {
     },
     fontFamily: {
       title: ["Montserrat", "sans-serif"],
-      time :["Libre Baskerville","serif"]
+      time: ["Libre Baskerville", "serif"],
     },
     extend: {
+      backgroundImage: {
+        background_library: "url('/images/background_frames.png')",
+      },
       transitionDuration: {
         "2000": "2000ms",
         "3000": "3000ms",
@@ -89,8 +92,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       boxShadow: {
-        "custom": "0px 3px 10px 0px rgba(0, 0, 0, 0.13)",
-      }
+        custom: "0px 3px 10px 0px rgba(0, 0, 0, 0.13)",
+      },
     },
   },
   plugins: [
