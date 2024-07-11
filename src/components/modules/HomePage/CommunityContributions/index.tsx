@@ -31,7 +31,7 @@ function CommunityContributions() {
     if (openMessageDiaolog) {
       const timer = setTimeout(() => {
         setOpenMessageDiaolog(false);
-      }, 6000);
+      }, 15000);
       return () => clearTimeout(timer);
     }
   }, [openMessageDiaolog]);

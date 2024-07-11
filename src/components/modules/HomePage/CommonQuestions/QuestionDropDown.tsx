@@ -30,11 +30,12 @@ function QuestionDropDown({ question, answer, isOpen, onToggle }: QuestionDropDo
           !isOpen
             ? "shadow-custom border border-background bg-background"
             : "border transition-all border-primary-darker bg-[#569f592d] shadow-none",
+            "gap-2"
         )}
         onClick={onToggle}
       >
         <p className="font-bold">{question}</p>
-        {!isOpen ? <ChevronDown /> : <ChevronUp />}
+        {!isOpen ? <ChevronDown className="text-[24px]"/> : <ChevronUp className="text-[24px]"/>}
       </div>
       <div
         ref={contentRef}
