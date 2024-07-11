@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import logo from "@public/images/logo.png";
+import Link from "next/link";
 
 const items = ["Về chúng tôi", "Thành tựu", "Nhân vật", "Cộng đồng"];
 
@@ -18,8 +19,9 @@ function Header() {
   return (
     <>
       <header className="absolute bottom-0 left-0 right-0 top-0 z-[998] h-24 border-b-[1px] border-b-white/10 bg-opacity-0">
-        <div className="flex h-full w-full max-w-[1440px] items-center justify-between px-20 text-white">
+        <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-20 text-white">
           <Image src={logo} alt="" height={52} />
+
           <nav>
             <ul className="flex gap-10">
               {items.map((item) => (
@@ -51,12 +53,14 @@ function Header() {
           </nav>
           <div className="flex items-center gap-5">
             <Search width={20} />
-            <Button>
-              <div className="flex items-center gap-2">
-                <span>Khám phá</span>
-                <ArrowRight width={16} />
-              </div>
-            </Button>
+            <Link href={"trien-lam"}>
+              <Button>
+                <div className="flex items-center gap-2">
+                  <span>Khám phá</span>
+                  <ArrowRight width={16} />
+                </div>
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
