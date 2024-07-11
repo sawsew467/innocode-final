@@ -1,20 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import items from "../../../../data/featuredMember";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import axios from "axios";
+import endpoint from "@/app/service/endpoint";
+import Link from "next/link";
 
 const ContributorSection = () => {
   const [filter, setFilter] = useState("*");
-
+  const [data, setData] = useState([]);
   const filteredItems =
-    filter === "*"
-      ? items.slice(25, 34)
-      : items
-          .slice(25, 34)
-          .filter((item: any) => item.category.includes(filter));
+    filter === "*" ? data : data.sort(() => Math.random() - 0.5).slice(0, 10);
+
+  const getProject = async () => {
+    try {
+      const newData = await axios.get(endpoint.GET_PROJECT);
+      setData(newData.data.data);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    getProject();
+  }, []);
 
   return (
     <div className="mt-40">
@@ -99,32 +108,31 @@ const ContributorSection = () => {
                   delay: 0.1 * index,
                 }}
                 className="cursor-pointer"
-                key={item.id + filter}
+                key={item._id + filter}
                 viewport={{
                   once: true,
                 }}
               >
-                <div className="hvr-shutter-out">
-                  <div className="img-meta relative w-full">
-                    <Image
-                      src={
-                        "https://fpt.com/Images/images/tin-tuc-2021/toa-nha/Toan-canh-toa-nha.jpg"
-                      }
-                      width={400}
-                      height={600}
-                      alt="gallary"
-                      className="object-fille tran5s h-80 w-full"
-                    />
+                <Link href={`blog/${item?.slug}` ?? ""}>
+                  <div className="hvr-shutter-out">
+                    <div className="img-meta relative w-full">
+                      <Image
+                        src={item.image}
+                        width={400}
+                        height={600}
+                        alt="gallary"
+                        className="object-fille tran5s h-80 w-full"
+                      />
 
-                    <div className="caption absolute top-1/2 flex-col content-center text-center">
-                      <span className="tag">{item.tag}</span>
-                      <h6 className="text-lg font-bold text-primary hover:underline hover:underline-offset-2">
-                        kích vào đây
-                      </h6>
+                      <div className="caption absolute top-1/2 flex-col content-center text-center">
+                        <span className="tag w-4/5">
+                          <p className="line-clamp-3">{item.subTitle}</p>
+                        </span>
+                      </div>
+                      {/* <!-- /.caption --> */}
                     </div>
-                    {/* <!-- /.caption --> */}
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </AnimatePresence>

@@ -3,7 +3,7 @@ import create from "zustand";
 interface IState {
   drop: boolean;
   setDropToggle: () => void;
-  
+
   openMessageDiaolog: boolean;
   setOpenMessageDiaolog: (openMessageDiaolog: boolean) => void;
 
@@ -12,12 +12,14 @@ interface IState {
     y: number;
     z: number;
   };
+
+  isTalking: boolean;
 }
 
 const useStore = create<IState>((set) => ({
   drop: false,
   openMessageDiaolog: false,
-  
+
   setDropToggle: () =>
     set((state: IState) => ({
       drop: !state.drop,
@@ -34,9 +36,15 @@ const useStore = create<IState>((set) => ({
         ...point,
       },
     })),
-    setOpenMessageDiaolog: (openMessageDiaolog: boolean) => set(() => ({
-      openMessageDiaolog: openMessageDiaolog
-    }))
+  setOpenMessageDiaolog: (openMessageDiaolog: boolean) =>
+    set(() => ({
+      openMessageDiaolog: openMessageDiaolog,
+    })),
+  isTalking: false,
+  setIsTalking: () =>
+    set((state: IState) => ({
+      isTalking: !state.isTalking,
+    })),
 }));
 
 export default useStore;
