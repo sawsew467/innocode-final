@@ -1,3 +1,4 @@
+import useStore from '@/store';
 import { Copy, Volume2 } from 'lucide-react';
 import React, { useRef, useEffect } from 'react';
 
@@ -12,6 +13,8 @@ interface AudioPlayerProps {
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, onPlay, onPause, className = '', onEnded }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
+  const setIsTalking = useStore((state: any) => state?.setIsTalking);
+
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
@@ -48,6 +51,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, onPlay, onPause, classNa
   
       const endedHandler = () => {
         if (onEnded) {
+          setIsTalking(false);
           onEnded();
         }
       };
