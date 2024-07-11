@@ -345,9 +345,12 @@ const TimeLineSection = () => {
               exit={{
                 scale: 0,
                 opacity: 0,
+                transition: {
+                  duration: 0.5,
+                },
               }}
               transition={{
-                duration: 0.2,
+                duration: 0.5,
               }}
             >
               <Image

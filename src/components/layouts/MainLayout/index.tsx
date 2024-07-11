@@ -1,11 +1,13 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import HeaderSticky from "./HeaderSticky";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* <Header /> */}
-      <main className="mt-24 min-h-screen">{children}</main>
+      <HeaderSticky />
+      <Header />
+      <main className="min-h-screen">{children}</main>
       <Footer />
     </>
   );
