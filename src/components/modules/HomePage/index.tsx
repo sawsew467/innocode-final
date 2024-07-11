@@ -5,7 +5,7 @@ import IntroductionSection from "./IntroductionSection";
 function HomePageModule() {
   return (
     <>
-      <CommonSection />
+      {/* <CommonSection /> */}
       <HeroSection />
       <IntroductionSection />
     </>
