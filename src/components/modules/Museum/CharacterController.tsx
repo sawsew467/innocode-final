@@ -10,7 +10,7 @@ import { calculateDistance } from "@/utils/calculateDistance";
 import { Timmy } from "@/components/models/Timmy";
 import useStore from "@/store";
 
-const MOVEMENT_SPEED: number = 0.5;
+const MOVEMENT_SPEED: number = 1;
 
 function CharacterController() {
   const rigidbody: any = useRef();
