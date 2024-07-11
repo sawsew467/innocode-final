@@ -45,7 +45,7 @@ export default function useFollowCam(ref: any, offset: number[]) {
     yaw.rotation.y = -Math.PI / 2;
 
     camera.position.z = 0;
-    camera.position.y = 1;
+    camera.position.y = 4;
 
     yaw.add(pitch);
     pitch.add(camera);

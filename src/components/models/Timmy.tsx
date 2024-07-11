@@ -5,7 +5,7 @@ interface Props {
 }
 
 export function Timmy({ characterRef }: Props) {
-  const { nodes, materials }: any = useGLTF("/timmy.glb");
+  const { nodes, materials }: any = useGLTF("/models/timmy.glb");
 
   return (
     <group ref={characterRef} dispose={null} position={[0, 0.5, 0]} scale={1}>

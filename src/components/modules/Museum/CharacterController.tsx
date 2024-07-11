@@ -7,8 +7,8 @@ import { useFrame } from "@react-three/fiber";
 // import useKeyboard from "@/hooks/useKeyboard";
 import { calculateRotationVector } from "@/utils/calculateRotationVector";
 import { calculateDistance } from "@/utils/calculateDistance";
-import { useAppSelector } from "@/hooks/useRedux";
 import { Timmy } from "@/components/models/Timmy";
+import useStore from "@/store";
 
 const MOVEMENT_SPEED: number = 0.5;
 
@@ -23,12 +23,14 @@ function CharacterController() {
 
   //   let myAngle = useMemo(() => 0, []);
 
-  const { targetPoint } = useAppSelector((state: any) => state?.controller3D);
+  // const { targetPoint } = useAppSelector((state: any) => state?.controller3D);
+  const targetPoint = useStore((state: any) => state?.targetPoint);
+  console.log("🚀 ~ CharacterController ~ targetPoint:", targetPoint);
   const { yaw, isMoving } = useFollowCam(characterRef, [0, 2, 0]);
 
-  const idleAnimations: any = useGLTF("/timmy.glb")?.animations;
+  const idleAnimations: any = useGLTF("/models/timmy.glb")?.animations;
 
-  const walkingAnimations: any = useGLTF("/timmy.glb")?.animations;
+  const walkingAnimations: any = useGLTF("/models/timmy.glb")?.animations;
 
   const idleActions = useAnimations(idleAnimations, characterRef).actions;
   const walkingActions = useAnimations(walkingAnimations, characterRef).actions;
@@ -38,7 +40,7 @@ function CharacterController() {
   }, [idleActions]);
 
   useEffect(() => {
-    rigidbody?.current?.setTranslation(new Vector3(-3, 2, 0));
+    rigidbody?.current?.setTranslation(new Vector3(-15, 5, 0));
     rigidbody?.current.setRotation(new Vector3(0, Math.PI / 2, 0));
   }, []);
 
@@ -53,6 +55,7 @@ function CharacterController() {
       rigidbody?.current?.translation(),
       targetPoint,
     );
+
     const distance = calculateDistance(
       rigidbody?.current?.translation(),
       targetPoint,
