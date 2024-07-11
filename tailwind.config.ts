@@ -19,6 +19,7 @@ const config = {
     },
     fontFamily: {
       title: ["Montserrat", "sans-serif"],
+      time :["Libre Baskerville","serif"]
     },
     extend: {
       transitionDuration: {
