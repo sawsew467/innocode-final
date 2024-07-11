@@ -7,7 +7,7 @@ import ContributeDialog from "./ContributeDialog";
 import MessageDialog from "./MessageDialog";
 import { useEffect } from "react";
 import useStore from "@/store";
-
+import { motion } from "framer-motion";
 const message = `<p style="max-width: 450px; border-radius: 8px; background-color: #f0f0f0; padding: 16px; text-align: center; font-weight: 600;">
     Kính gửi tới bạn,
     <br /> <br />
@@ -38,8 +38,9 @@ function CommunityContributions() {
 
   return (
     <div className="relative w-full py-[60px]">
+      <div id="cong-dong"></div>
       <div
-      className="absolute inset-0"
+        className="absolute inset-0"
         style={{
           backgroundImage:
             "url('https://wordpress.zozothemes.com/ecohorbor/wp-content/uploads/sites/19/2024/03/wave-full-bg-1.png')",
@@ -55,15 +56,34 @@ function CommunityContributions() {
           </h1>
         </div>
 
-        <div className="absolute left-1/2 top-[220px] z-10 -translate-x-1/2 -translate-y-1/2 transform">
-          <Image
-            src={SaveGreenImage}
-            alt="Image"
-            width={1000}
-            height={1000}
-            className="w-100"
-          />
-        </div>
+        <span className="absolute left-1/2 top-[220px] z-10 -translate-x-1/2 -translate-y-1/2 transform">
+          <motion.div
+            initial={{
+              y: 40,
+              opacity: 0,
+            }}
+            whileInView={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              type: "spring",
+              duration: 0.75,
+              delay: 0.25,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
+            <Image
+              src={SaveGreenImage}
+              alt="Image"
+              width={1000}
+              height={1000}
+              className="w-100"
+            />
+          </motion.div>
+        </span>
         <div
           onClick={open}
           className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center"
