@@ -36,7 +36,7 @@ function HeaderSticky() {
   return (
     <header
       className={cn(
-        "fixed bottom-0 left-0 right-0 top-0 z-[999] h-24 border-b-[1px] border-b-white/10 bg-white drop-shadow-md transition-all duration-500",
+        "fixed bottom-0 left-0 right-0 top-0 z-50 h-24 border-b-[1px] border-b-white/10 bg-white drop-shadow-md transition-all duration-500",
         scrollDir === "down" && "-translate-y-full",
         isInHeader && "-translate-y-full",
       )}

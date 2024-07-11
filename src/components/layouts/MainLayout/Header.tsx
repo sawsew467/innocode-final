@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <>
-      <header className="absolute bottom-0 left-0 right-0 top-0 z-[998] h-24 border-b-[1px] border-b-white/10 bg-opacity-0">
+      <header className="absolute bottom-0 left-0 right-0 top-0 z-40 h-24 border-b-[1px] border-b-white/10 bg-opacity-0">
         <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-20 text-white">
           <Image src={logo} alt="" height={52} />
 
