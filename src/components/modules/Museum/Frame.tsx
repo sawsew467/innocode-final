@@ -11,6 +11,7 @@ function Frame({ data, setIsShowDrawer, setContent }: any) {
         transform
         scale={data?.scale}
         zIndexRange={[0, 0]}
+
         // occlude="blending"
       >
         <div className="flex flex-col items-center gap-5 bg-none">

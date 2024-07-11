@@ -1,11 +1,28 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import { useCallback, useState } from "react";
 
 const useModal = () => {
-  const [isOpen, setOpen] = useState(false);
-  const setModal = (open: boolean) => {
-    setOpen(open);
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const toggle = useCallback(() => {
+    setVisible(!visible);
+  }, [visible]);
+
+  const open = useCallback(() => {
+    setVisible(true);
+  }, []);
+
+  const close = useCallback(() => {
+    setVisible(false);
+  }, []);
+
+  return {
+    toggle,
+    visible,
+    open,
+    close,
   };
-  return { isOpen, setModal };
 };
 
 export default useModal;

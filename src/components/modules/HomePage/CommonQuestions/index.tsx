@@ -56,7 +56,7 @@ function CommonQuestions() {
           backgroundPosition: "343px -80px",
         }}
       ></div>
-      <div className="container py-20">
+      <div className="container py-[60px]">
         <Title
           title=""
           subtitle="Câu hỏi"
