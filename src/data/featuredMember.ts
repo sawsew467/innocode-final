@@ -708,3 +708,81 @@ const portfolio = [
   ];
   export default portfolio;
   
+
+  export const blogData = [
+    {
+      id: 1,
+      category: "Web Design",
+      name: "Portfolio Website",
+      tag: "Design",
+      image: "portfolio.jpg",
+      projectInfo: {
+        date: "2023-01-01",
+        clientName: "Client A",
+        projectType: "Website",
+      },
+      imgSrc: "/images/gallery/img_05.jpg",
+      videoUrl: "AMg8Xws-8kA",
+      iconClass: "bi bi-play-fill",
+      overlayClass: "video-icon overlay-icon",
+      captionTags: ["UI/UX"],
+      captionTitle: "Analysis Application.",
+      zoomImgSrc: "zoom.jpg",
+    },
+    {
+      id: 2,
+      category: "Web Design",
+      name: "Portfolio Website",
+      tag: "Design",
+      image: "portfolio.jpg",
+      projectInfo: {
+        date: "2023-01-01",
+        clientName: "Client A",
+        projectType: "Website",
+      },
+      imgSrc: "/images/gallery/img_05.jpg",
+      videoUrl: "AMg8Xws-8kA",
+      iconClass: "bi bi-play-fill",
+      overlayClass: "video-icon overlay-icon",
+      captionTags: ["UI/UX"],
+      captionTitle: "Analysis Application.",
+      zoomImgSrc: "zoom.jpg",
+    },
+    {
+      id: 56,
+      imgSrc: "/images/gallery/img_05.jpg",
+      videoUrl: "AMg8Xws-8kA",
+      iconClass: "bi bi-play-fill",
+      overlayClass: "video-icon overlay-icon",
+      captionTags: ["UI/UX"],
+      captionTitle: "Analysis Application.",
+    },
+    {
+      id: 57,
+      imgSrc: "/images/gallery/img_06.jpg",
+      zoomImgSrc: "/images/gallery/img_08.jpg",
+      iconClass: "bi bi-plus",
+      overlayClass: "tran3s overlay-icon zoom-icon",
+      captionTags: ["App"],
+      captionTitle: "The Bomb Squad",
+    },
+    {
+      id: 58,
+      imgSrc: "/images/gallery/img_07.jpg",
+      videoUrl: "RBoUxI7eIW8",
+      iconClass: "bi bi-play-fill",
+      overlayClass: "video-icon overlay-icon",
+      captionTags: ["Mobile"],
+      captionTitle: "Weekend Warriors",
+    },
+    {
+      id: 59,
+      imgSrc: "/images/gallery/img_08.jpg",
+      zoomImgSrc: "/images/gallery/img_08.jpg",
+      iconClass: "bi bi-plus",
+      overlayClass: "tran3s overlay-icon zoom-icon",
+      captionTags: ["Branding"],
+      captionTitle: "Associations Now",
+    },
+  ];
+  
