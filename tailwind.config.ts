@@ -28,7 +28,7 @@ const config = {
         "5000": "5000ms",
         "50000": "50000ms",
       },
-      colors: {
+      colors: {pm
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
