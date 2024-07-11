@@ -14,6 +14,7 @@ interface MicrophoneContextType {
   stopMicrophone: () => void;
   setupMicrophone: () => void;
   microphoneState: MicrophoneState | null;
+  focesStopMicro : () => void
 }
 
 export enum MicrophoneEvents {
@@ -83,13 +84,17 @@ const MicrophoneContextProvider: React.FC<MicrophoneContextProviderProps> = ({
     }
   }, [microphone]);
 
+  const focesStopMicro = () =>{
+    microphone?.pause();
+  }
+
   const startMicrophone = useCallback(() => {
     setMicrophoneState(MicrophoneState.Opening);
 
     if (microphone?.state === "paused") {
       microphone.resume();
     } else {
-      microphone?.start(250);
+     microphone?.start(250);
     }
 
     setMicrophoneState(MicrophoneState.Open);
@@ -103,6 +108,7 @@ const MicrophoneContextProvider: React.FC<MicrophoneContextProviderProps> = ({
         stopMicrophone,
         setupMicrophone,
         microphoneState,
+        focesStopMicro
       }}
     >
       {children}

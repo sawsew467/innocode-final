@@ -16,28 +16,47 @@ import Visualizer from "./Visualizer";
 import { useChat } from "ai/react";
 
 type SentMessageType = {
-    handleSubmitUser: any;
-}
+  handleSubmitUser: any;
+  isStopMic: boolean;
+  handleDisbleVoiceChat : any
+};
 
-const TranscriptAI: React.FC<SentMessageType> = ({ handleSubmitUser}) => {
-  const [caption, setCaption] = useState<string | undefined>(
-    "Powered by Deepgram"
-  );
+const TranscriptAI: React.FC<SentMessageType> = ({
+  handleSubmitUser,
+  isStopMic,
+  handleDisbleVoiceChat
+}) => {
+  const [caption, setCaption] = useState<string | undefined>("Powered by fuse");
   const [history, setHistory] = useState<string[]>([]);
   const { connection, connectToDeepgram, connectionState } = useDeepgram();
-  const { setupMicrophone, microphone, startMicrophone, microphoneState } =
-    useMicrophone();
+  const {
+    setupMicrophone,
+    microphone,
+    startMicrophone,
+    stopMicrophone,
+    focesStopMicro,
+    microphoneState,
+  } = useMicrophone();
   const captionTimeout = useRef<any>();
   const keepAliveInterval = useRef<any>();
 
-///
+  ///
 
-const handleSentAIMessage = (data: string) => {
-    handleSubmitUser(data);
+  const handleSentAIMessage = (data: string) => {
+    let status = handleSubmitUser(data);
+
+    if(!status) return ;
+    
+    handleDisbleVoiceChat();
   };
 
-///
+  ///
+  useEffect(()=>{
 
+    if(isStopMic) stopMicrophone();
+    else startMicrophone()
+
+  },[isStopMic])
 
   useEffect(() => {
     setupMicrophone();
@@ -57,6 +76,8 @@ const handleSentAIMessage = (data: string) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [microphoneState]);
+
+
 
   useEffect(() => {
     if (!microphone) return;
@@ -82,9 +103,10 @@ const handleSentAIMessage = (data: string) => {
           setCaption(undefined);
           clearTimeout(captionTimeout.current);
         }, 3000);
-        
+
         // Update the history state with the final transcript
-        handleSentAIMessage(thisCaption)
+        handleSentAIMessage(thisCaption);
+     
         setHistory((prevHistory) => [...prevHistory, thisCaption]);
       }
     };
@@ -97,7 +119,10 @@ const handleSentAIMessage = (data: string) => {
     }
 
     return () => {
-      connection.removeListener(LiveTranscriptionEvents.Transcript, onTranscript);
+      connection.removeListener(
+        LiveTranscriptionEvents.Transcript,
+        onTranscript,
+      );
       microphone.removeEventListener(MicrophoneEvents.DataAvailable, onData);
       clearTimeout(captionTimeout.current);
     };
@@ -126,25 +151,25 @@ const handleSentAIMessage = (data: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [microphoneState, connectionState]);
 
+
   return (
     <>
-      <div className="flex h-full antialiased">
-        <div className="flex flex-row h-full w-full overflow-x-hidden">
-          <div className="flex flex-col flex-auto h-full">
-            {/* height 100% minus 8rem */}
-            <div className="relative w-full h-full">
+      <div className="flex h-[50px] hidden w-full antialiased">
+        <div className="flex h-full w-full flex-row overflow-x-hidden">
+          <div className="flex h-full flex-auto flex-col">
+            <div className="relative h-full w-full">
               {microphone && <Visualizer microphone={microphone} />}
-              <div className="absolute bottom-[8rem]  inset-x-0 max-w-4xl mx-auto text-center">
+              {/* <div className="absolute inset-x-0 bottom-[8rem] mx-auto max-w-4xl text-center">
                 {caption && <span className="bg-black/70 p-8">{caption}</span>}
-              </div>
+              </div> */}
             </div>
             <div className="history-container">
-              <h2>Lịch sử giao tiếp:</h2>
+              {/* <h2>Lịch sử giao tiếp:</h2>
               <ul>
                 {history.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

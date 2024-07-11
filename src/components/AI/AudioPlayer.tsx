@@ -1,3 +1,4 @@
+import { Copy, Volume2 } from 'lucide-react';
 import React, { useRef, useEffect } from 'react';
 
 interface AudioPlayerProps {
@@ -10,28 +11,73 @@ interface AudioPlayerProps {
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, onPlay, onPause, className = '', onEnded }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const volumeRef = useRef<HTMLDivElement>(null);
+
+  const togglePlayPause = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+  };
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (audio) {
-      audio.addEventListener('play', onPlay || (() => {}));
-      audio.addEventListener('pause', onPause || (() => {}));
+    const volumeIcon = volumeRef.current;
+  
+    if (audio && volumeIcon) {
+      const playHandler = () => {
+        if (audio.paused) {
+          audio.play();
+        }
+        if (onPlay) {
+          onPlay();
+        }
+      };
+      const pauseHandler = () => {
+        if (!audio.paused) {
+          audio.pause();
+        }
+        if (onPause) {
+          onPause();
+        }
+      };
+  
+      const endedHandler = () => {
+        if (onEnded) {
+          onEnded();
+        }
+      };
+  
+      volumeIcon.addEventListener('click', togglePlayPause);
+      audio.addEventListener('ended', endedHandler);
+  
       return () => {
-        audio.removeEventListener('play', onPlay || (() => {}));
-        audio.removeEventListener('pause', onPause || (() => {}));
+        volumeIcon.removeEventListener('click', togglePlayPause);
+        audio.removeEventListener('ended', endedHandler);
       };
     }
-  }, [onPlay, onPause]);
+  }, [onPlay, onPause, onEnded]);
+  
 
   return (
-    <audio 
-      ref={audioRef}
-      autoPlay
-      className={`w-full ${className}`}
-      onEnded={onEnded}
-      controls
-      src={src}
-    />
+    <>
+      <div className='flex gap-4' ref={volumeRef}>
+        <Volume2 className="cursor-pointer opacity-50 hover:opacity-100" />
+        <Copy className="cursor-pointer opacity-50 hover:opacity-100" />
+      </div>
+      <audio
+        ref={audioRef}
+        className={`w-full ${className}`}
+        autoPlay
+        src={src}
+        controls={false}
+  
+      />
+    </>
   );
 };
 

@@ -36,7 +36,9 @@ const formatMessage = (message: VercelChatMessage) => {
     return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `Trả lời các câu hỏi của người dùng chỉ dựa trên ngữ cảnh sau và Bạn đóng vai một hướng dẫn viên du lịch giàu kinh nghiệm và vui tính. Nếu câu trả lời không phù hợp với ngữ cảnh, hãy trả lời một cách lịch sự rằng bạn không có sẵn thông tin đó.:
+const TEMPLATE = `Answer the user's questions based only on the following context and You play the role of an experienced and funny tour guide.
+Your answers will be formatted with paragraph breaks using the <br/>; tag and line breaks with the <br/>; tag to ensure readability and clarity for readers. 
+In particular, there is no distinction between upper and lower case letters and your answer is always translated into Vietnamese :
 ==============================
 Context: {context}
 ==============================

@@ -82,7 +82,10 @@
   }
 }
 
-
+.br-spacing br {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .comma-pos {
   top: -40px;
   left: -121px;
