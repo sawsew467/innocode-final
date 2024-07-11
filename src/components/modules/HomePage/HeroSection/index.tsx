@@ -1,14 +1,16 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Earth } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { cn } from "@/lib/utils";
+
+import { Button } from "@/components/ui/button";
+
+import ArrowSubcribe from "@public/svgr/ArrowSubcribe";
 import banner from "@public/images/banner.png";
 import earth from "@public/images/circle-earth.png";
-
-import { cn } from "@/lib/utils";
-import { ArrowRight, Earth } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ArrowSubcribe from "@public/svgr/ArrowSubcribe";
 
 function HeroSection() {
   return (
@@ -20,7 +22,7 @@ function HeroSection() {
         height={1080}
         className="h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-primary-darker/80" />
+      <div className="bg-primary-darker/80 absolute inset-0" />
       <div className="absolute left-0 top-0 flex h-full w-full flex-col justify-center">
         <div className="container">
           <div className={cn("mt-20 flex flex-col items-start")}>
@@ -44,14 +46,14 @@ function HeroSection() {
                 "after:rounded-tr-0 after:rounded-br-0 after:absolute after:z-[-10] after:h-[40px] after:w-[20px] after:-translate-x-[8px] after:rounded-bl-[150px] after:rounded-tl-[150px] after:bg-background after:content-['']",
               )}
             >
-              <Earth className="animate-spin text-primary duration-5000" />
+              <Earth className="duration-5000 animate-spin text-primary" />
               <span className="text-base font-bold uppercase text-primary">
                 PHÁT TRIỂN BỀN VỮNG
               </span>
             </motion.div>
             <motion.span
               className={cn(
-                "flex font-title text-6xl font-semibold leading-tight text-white",
+                "font-title flex text-6xl font-semibold leading-tight text-white",
               )}
             >
               {"KỶ NIỆM 25 NĂM"
@@ -80,7 +82,7 @@ function HeroSection() {
             </motion.span>
             <motion.span
               className={cn(
-                "flex font-title text-6xl font-semibold leading-tight text-white",
+                "font-title flex text-6xl font-semibold leading-tight text-white",
               )}
             >
               {"FPT EDUCATION"
@@ -111,12 +113,14 @@ function HeroSection() {
               Trí tuệ nhân tạo - Bán dẫn - Xe điện - Chuyển đổi số - Môi trường
               xanh
             </h5>
-            <Button>
-              <div className="flex items-center gap-2">
-                <span>Khám phá</span>
-                <ArrowRight width={16} />
-              </div>
-            </Button>
+            <Link href={"trien-lam"}>
+              <Button>
+                <div className="flex items-center gap-2">
+                  <span>Khám phá</span>
+                  <ArrowRight width={16} />
+                </div>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -137,7 +141,7 @@ function HeroSection() {
         }}
         className="absolute -bottom-[450px] -right-[112px]"
       >
-        <div className="absolute left-1/2 top-1/2 z-10 flex h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-full bg-primary-darker blur-[180px]" />
+        <div className="bg-primary-darker absolute left-1/2 top-1/2 z-10 flex h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-full blur-[180px]" />
         <div className="absolute left-1/2 top-1/2 z-20 flex h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-full">
           {/* <span className="mt-20 text-4xl text-white">fuse</span>
           <div className="mt-5 h-1 w-32 rounded-full bg-white" />

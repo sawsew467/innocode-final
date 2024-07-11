@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import useModal from "@/hooks/useModal";
 import SaveGreenImage from "@public/images/savegreen.png";
 import { Trees, UserRound } from "lucide-react";
@@ -21,32 +21,33 @@ const message = `<p style="max-width: 450px; border-radius: 8px; background-colo
 `;
 
 function CommunityContributions() {
-  const {visible, close, open} = useModal();
-  const {openMessageDiaolog, setOpenMessageDiaolog} = useStore((state) => ({
+  const { visible, close, open } = useModal();
+  const { openMessageDiaolog, setOpenMessageDiaolog } = useStore((state) => ({
     openMessageDiaolog: state.openMessageDiaolog,
-    setOpenMessageDiaolog: state.setOpenMessageDiaolog
+    setOpenMessageDiaolog: state.setOpenMessageDiaolog,
   }));
 
   useEffect(() => {
-    if(openMessageDiaolog) {
+    if (openMessageDiaolog) {
       const timer = setTimeout(() => {
         setOpenMessageDiaolog(false);
       }, 6000);
       return () => clearTimeout(timer);
     }
-  }, [openMessageDiaolog])
-  
+  }, [openMessageDiaolog]);
+
   return (
-    <div
-      
-      className="relative w-full py-20"
-      style={{
-        backgroundImage:
-          "url('https://wordpress.zozothemes.com/ecohorbor/wp-content/uploads/sites/19/2024/03/wave-full-bg-1.png')",
-        backgroundRepeat: "repeat-x",
-        backgroundPosition: "0px 125px",
-      }}
-    >
+    <div className="relative w-full py-[60px]">
+      <div
+      className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "url('https://wordpress.zozothemes.com/ecohorbor/wp-content/uploads/sites/19/2024/03/wave-full-bg-1.png')",
+          backgroundRepeat: "repeat-x",
+          backgroundPosition: "0px 105px",
+          opacity: 0.5,
+        }}
+      ></div>
       <div className="">
         <div className="flex w-full translate-y-[-20%] justify-center">
           <h1 className="w-fit bg-white p-4 text-center text-[160px] font-[900] text-primary">
@@ -65,7 +66,8 @@ function CommunityContributions() {
         </div>
         <div
           onClick={open}
-        className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center">
+          className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center"
+        >
           <div className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]">
             <p className="font-bold text-white">
               <Trees size={38} />
@@ -74,10 +76,13 @@ function CommunityContributions() {
           <div className="absolute top-[12px] h-[60px] w-[60px] animate-ping rounded-full border-2 border-primary"></div>
         </div>
 
-        
-        <ContributeDialog closeModal={close} visible={visible} openModal={open}/>
-        <MessageDialog htmlMessage={message}/>
-        <div className="container relative bo/ttom-[30px] z-20">
+        <ContributeDialog
+          closeModal={close}
+          visible={visible}
+          openModal={open}
+        />
+        <MessageDialog htmlMessage={message} />
+        <div className="bo/ttom-[30px] container relative z-20">
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex items-center justify-center gap-2">
               <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-primary">
