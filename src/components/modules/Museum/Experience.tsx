@@ -5,7 +5,7 @@ import Room from "./Room";
 import CharacterController from "./CharacterController";
 import PictureFrames from "./PictureFrames";
 
-function Experience({ setIsShowDrawer }: { setIsShowDrawer: any }) {
+function Experience({ setIsShowDrawer, setContent }: any) {
   return (
     <Canvas
       style={{
@@ -21,7 +21,10 @@ function Experience({ setIsShowDrawer }: { setIsShowDrawer: any }) {
       <Suspense>
         <Physics timeStep="vary" gravity={[0, -30, 0]}>
           <Room />
-          <PictureFrames />
+          <PictureFrames
+            setIsShowDrawer={setIsShowDrawer}
+            setContent={setContent}
+          />
           <CharacterController />
         </Physics>
       </Suspense>

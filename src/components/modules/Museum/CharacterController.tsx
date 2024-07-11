@@ -25,7 +25,6 @@ function CharacterController() {
 
   // const { targetPoint } = useAppSelector((state: any) => state?.controller3D);
   const targetPoint = useStore((state: any) => state?.targetPoint);
-  console.log("🚀 ~ CharacterController ~ targetPoint:", targetPoint);
   const { yaw, isMoving } = useFollowCam(characterRef, [0, 2, 0]);
 
   const idleAnimations: any = useGLTF("/models/timmy.glb")?.animations;
