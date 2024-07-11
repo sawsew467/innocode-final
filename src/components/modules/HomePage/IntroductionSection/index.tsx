@@ -1,31 +1,33 @@
+"use client";
 import Title from "@/components/ui/title-common";
 import { EarthIcon, Mountain, MountainSnow } from "lucide-react";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
 const data = [
   {
-    introduction: "FPT Education, thành lập năm 1999, là một trong ba mảng hoạt động cốt lõi của Tập đoàn FPT - Tập đoàn tiên phong trong lĩnh vực CNTT của Việt Nam. Với tầm ảnh hưởng quốc tế, FPT Education đã mở rộng ra đầy đủ các cấp học, góp phần cung cấp nguồn nhân lực chất lượng cao cho thị trường lao động.",
+    introduction:
+      "FPT Education, thành lập năm 1999, là một trong ba mảng hoạt động cốt lõi của Tập đoàn FPT - Tập đoàn tiên phong trong lĩnh vực CNTT của Việt Nam. Với tầm ảnh hưởng quốc tế, FPT Education đã mở rộng ra đầy đủ các cấp học, góp phần cung cấp nguồn nhân lực chất lượng cao cho thị trường lao động.",
     celebrationTitle: `Kỷ Niệm 25 Năm FPT Education`,
     celebrationContent: `FPT Education kỷ niệm 25 năm thành lập (1999-2024) với chuỗi sự kiện “Lên Ngàn”, chinh phục 25 đỉnh núi trong và ngoài nước. Chương trình thể hiện tinh thần "vượt qua giới hạn" và "phát triển bền vững", đồng thời hỗ trợ 50% chi phí cho CBGV tham gia.`,
-  }
-]
+  },
+];
 
 function IntroductionSection() {
   return (
     <div className="min-h-[300px]">
-      <div className="container pt-[130px] pb-[130px]">
+      <div className="container pb-[130px] pt-[130px]">
         <div className="relative">
           <Image
             src="/introduction/background_image.webp"
             alt=""
             width={500}
             height={500}
-            className="max-w-none w-full absolute right-[20%] top-[150px] animate-alternate"
+            className="absolute right-[20%] top-[150px] w-full max-w-none animate-alternate"
           />
         </div>
         <div className="row items-center">
           <div className="flex flex-row">
-            <div className="mt-[100px] mr-[20px]">
+            <div className="mr-[20px] mt-[100px]">
               <Title
                 title="FPT Education"
                 subtitle="về chúng tôi"
@@ -34,62 +36,128 @@ function IntroductionSection() {
               />
               {data.map((item, index) => (
                 <div key={index} className="flex flex-col">
-                  <p className="text-[#7A7A7A] text-base mb-9">{item.introduction}</p>
+                  <p className="mb-9 text-base text-[#7A7A7A]">
+                    {item.introduction}
+                  </p>
                   <div className="flex flex-row gap-10">
                     <div className="items-start">
-                      <MountainSnow className="text-primary w-12 h-12" />
+                      <MountainSnow className="h-12 w-12 text-primary" />
                     </div>
                     <div>
-                      <p className="text-[20px] font-semibold mb-4">{item.celebrationTitle}</p>
-                      <span className="text-[#7A7A7A] text-base">{item.celebrationContent}</span>
+                      <p className="mb-4 text-[20px] font-semibold">
+                        {item.celebrationTitle}
+                      </p>
+                      <span className="text-base text-[#7A7A7A]">
+                        {item.celebrationContent}
+                      </span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="ml-[20px] flex flex-row relative">
+            <div className="relative ml-[20px] flex flex-row">
               <div>
-                <div className="bg-primary w-fit rounded-tl-[20px] rounded-br-[20px] pt-[30px] pr-[20px] pb-[40px] pl-[55px] mb-[16px]">
-                  <p className="text-[#ffff] text-2xl italic mb-[18px]">&quot;Làm khác để làm tốt&quot;</p>
+                <motion.div
+                  initial={{
+                    x: -100,
+                    opacity: 0,
+                  }}
+                  whileInView={{
+                    x: 0,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    type: "spring",
+                    duration: 1.25,
+                    delay: 0.25,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  className="mb-[16px] w-fit rounded-br-[20px] rounded-tl-[20px] bg-primary pb-[40px] pl-[55px] pr-[20px] pt-[30px]"
+                >
+                  <p className="mb-[18px] text-2xl italic text-[#ffff]">
+                    &quot;Làm khác để làm tốt&quot;
+                  </p>
                   <div className="flex flex-row items-center gap-2">
-                    <div className="w-[60px] h-[1px] bg-white ml-[20px]"></div>
-                    <span className="text-[#ffff] text-sm w-28">Lê Trường Tùng</span>
+                    <div className="ml-[20px] h-[1px] w-[60px] bg-white"></div>
+                    <span className="w-28 text-sm text-[#ffff]">
+                      Lê Trường Tùng
+                    </span>
                   </div>
-                </div>
+                </motion.div>
+                <motion.div
+                  initial={{
+                    y: 100,
+                    opacity: 0,
+                  }}
+                  whileInView={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    type: "spring",
+                    duration: 1.25,
+                    delay: 0.25,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                >
+                  <Image
+                    src="/introduction/Introduction_image(2).png"
+                    alt=""
+                    width={1000}
+                    height={1000}
+                    className="h-[400px] w-[274px] max-w-none rounded-[12px] object-cover"
+                  />
+                </motion.div>
+              </div>
+              <motion.div
+                initial={{
+                  y: -100,
+                  opacity: 0,
+                }}
+                whileInView={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                transition={{
+                  type: "spring",
+                  duration: 1.25,
+                  delay: 0.25,
+                }}
+                viewport={{
+                  once: true,
+                }}
+              >
                 <Image
-                  src="/introduction/Introduction_image(2).png"
+                  src="/introduction/Introduction_image(6).jpg"
                   alt=""
                   width={1000}
                   height={1000}
-                  className="w-[274px] h-[400px] max-w-none object-cover rounded-[12px]"
+                  className="ml-[28px] mt-[64px] h-[420px] w-[274px] max-w-none rounded-[12px] object-cover"
                 />
-              </div>
-              <Image
-                src="/introduction/Introduction_image(6).jpg"
-                alt=""
-                width={1000}
-                height={1000}
-                className="w-[274px] h-[420px] max-w-none object-cover rounded-[12px] ml-[28px] mt-[64px] "
-              />
+              </motion.div>
               <Image
                 src="/introduction/about-shape-1.webp"
                 alt=""
                 width={500}
                 height={500}
-                className="max-w-none w-[170px] h-[170px] absolute top-[53%] left-[35%] duration-50000 animate-spin"
+                className="absolute left-[35%] top-[53%] h-[170px] w-[170px] max-w-none animate-spin duration-50000"
               />
-              <div className="w-[130px] h-[130px] rounded-full bg-white absolute top-[57%] left-[39%]"></div>
-              <div className="w-[120px] h-[120px] rounded-full bg-white border-2 border-dashed border-primary absolute top-[57%] left-[39.5%] duration-50000 animate-spin"></div>
+              <div className="absolute left-[39%] top-[57%] h-[130px] w-[130px] rounded-full bg-white"></div>
+              <div className="absolute left-[39.5%] top-[57%] h-[120px] w-[120px] animate-spin rounded-full border-2 border-dashed border-primary bg-white duration-50000"></div>
               <Image
                 src="/introduction/fpt-education-logo(2).webp"
                 alt=""
                 width={500}
                 height={500}
-                className="max-w-none w-[100px] h-auto absolute top-[63%] left-[41.5%]"
+                className="absolute left-[41.5%] top-[63%] h-auto w-[100px] max-w-none"
               />
-              <div className="w-[70px] h-[70px] bg-primary absolute top-[78%] left-[77%]"></div>
-              <div className="w-[20px] h-[20px] bg-[#ebebeb] absolute top-[88%] left-[63%]"></div>
-              <div className="w-[42px] h-[42px] bg-[#ebebeb] absolute top-[95%] left-[71%]"></div>
+              <div className="absolute left-[77%] top-[78%] h-[70px] w-[70px] bg-primary"></div>
+              <div className="absolute left-[63%] top-[88%] h-[20px] w-[20px] bg-[#ebebeb]"></div>
+              <div className="absolute left-[71%] top-[95%] h-[42px] w-[42px] bg-[#ebebeb]"></div>
             </div>
           </div>
         </div>

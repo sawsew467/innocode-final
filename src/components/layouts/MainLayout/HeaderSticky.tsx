@@ -8,12 +8,20 @@ import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import useDetectScroll from "@smakss/react-scroll-direction";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const items = ["Về chúng tôi", "Thành tựu", "Nhân vật", "Cộng đồng"];
+const items = [
+  { label: "Về chúng tôi", value: "ve-chung-toi" },
+  { label: "Thành tựu", value: "thanh-tuu" },
+  { label: "Nhân vật", value: "nhan-vat" },
+  { label: "Cộng đồng", value: "cong-dong" },
+];
 
 function HeaderSticky() {
-  const [selected, setSelected] = useState(items[0]);
+  const [selected, setSelected] = useState(items[0].label);
   const [isInHeader, setIsInHeader] = useState(true);
+
+  const router = useRouter();
 
   const { scrollDir } = useDetectScroll();
 
@@ -46,26 +54,27 @@ function HeaderSticky() {
         <nav>
           <ul className="flex gap-10">
             {items.map((item) => (
-              <li key={item}>
+              <li key={item.label}>
                 <div
                   className="flex cursor-pointer items-center gap-2"
                   onClick={() => {
-                    setSelected(item);
+                    setSelected(item.label);
+                    router.push(`#${item.value}`);
                   }}
                 >
                   <span
                     className={cn(
                       "h-2 w-3 rounded-bl-full rounded-tl-full bg-primary transition-all",
-                      selected === item ? "opacity-100" : "opacity-0",
+                      selected === item.label ? "opacity-100" : "opacity-0",
                     )}
                   />
                   <span
                     className={cn(
                       "text-sm uppercase transition-all",
-                      selected === item ? "text-primary" : "text-black",
+                      selected === item.label ? "text-primary" : "text-black",
                     )}
                   >
-                    {item}
+                    {item.label}
                   </span>
                 </div>
               </li>

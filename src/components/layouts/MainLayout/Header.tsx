@@ -10,11 +10,17 @@ import { Button } from "@/components/ui/button";
 
 import logo from "@public/images/logo.png";
 import Link from "next/link";
-
-const items = ["Về chúng tôi", "Thành tựu", "Nhân vật", "Cộng đồng"];
+import { useRouter } from "next/navigation";
+const items = [
+  { label: "Về chúng tôi", value: "ve-chung-toi" },
+  { label: "Thành tựu", value: "thanh-tuu" },
+  { label: "Nhân vật", value: "nhan-vat" },
+  { label: "Cộng đồng", value: "cong-dong" },
+];
 
 function Header() {
-  const [selected, setSelected] = useState(items[0]);
+  const [selected, setSelected] = useState(items[0].label);
+  const router = useRouter();
 
   return (
     <>
@@ -25,26 +31,27 @@ function Header() {
           <nav>
             <ul className="flex gap-10">
               {items.map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <div
                     className="flex cursor-pointer items-center gap-2"
                     onClick={() => {
-                      setSelected(item);
+                      setSelected(item.label);
+                      router.push(`#${item.value}`);
                     }}
                   >
                     <span
                       className={cn(
                         "h-2 w-3 rounded-bl-full rounded-tl-full bg-primary transition-all",
-                        selected === item ? "opacity-100" : "opacity-0",
+                        selected === item.label ? "opacity-100" : "opacity-0",
                       )}
                     />
                     <span
                       className={cn(
                         "text-sm font-medium uppercase transition-all",
-                        selected === item ? "text-primary" : "text-white",
+                        selected === item.label ? "text-primary" : "text-white",
                       )}
                     >
-                      {item}
+                      {item.label}
                     </span>
                   </div>
                 </li>
