@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['fpt.com'],
-    },
-  };
-  
-  export default nextConfig;
-  
+    remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "**",
+          port: "",
+        },
+    ],
+};
+
+export default nextConfig;
