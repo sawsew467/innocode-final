@@ -200,3 +200,6 @@
   transition: .5s ease;
 }
 
+.smooth-transition {
+  transition: height 0.3s ease-in-out; /* Adjust timing and easing function as needed */
+}

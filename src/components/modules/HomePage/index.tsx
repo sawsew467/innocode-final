@@ -12,7 +12,7 @@ import OurDirectionSection from "@/components/modules/HomePage/OurDirectionSecti
 function HomePageModule() {
   return (
     <>
-      {/* <CommonSection /> */}
+      {/* <CommonSection />  */}
       <HeroSection />
       <IntroductionSection />
       <CelebrationSection/>
