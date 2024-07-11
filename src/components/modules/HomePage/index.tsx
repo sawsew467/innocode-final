@@ -1,4 +1,6 @@
 import CommonSection from "./CommonSection";
+import ContributorSection from "./ContributorSection";
+import FeaturedMemberSession from "./FeaturedMemberSession";
 import HeroSection from "./HeroSection";
 import IntroductionSection from "./IntroductionSection";
 
@@ -8,6 +10,8 @@ function HomePageModule() {
       <CommonSection />
       <HeroSection />
       <IntroductionSection />
+      <FeaturedMemberSession/>
+      <ContributorSection/>
     </>
   );
 }
