@@ -8,36 +8,34 @@ import PortfolioDetailsTitle from "./PortfolioDetailsTitle";
 export function BlogsModule() {
   return (
     <>
-     <TracingBeam className="px-6">
-     <PortfolioDetailsTitle portfolio={null}/>
+      <TracingBeam className="px-6">
+        <PortfolioDetailsTitle portfolio={null} />
 
-      <div className="max-w-2xl mx-auto antialiased pt-4 relative">
-        {dummyContent.map((item, index) => (
-          <div key={`content-${index}`} className="mb-10">
-            <h2 className=" text-black  text-sm w-fit px-4 py-1 mb-4">
-              {item.badge}
-            </h2>
+        <div className="relative mx-auto max-w-2xl pt-4 antialiased">
+          {dummyContent.map((item, index) => (
+            <div key={`content-${index}`} className="mb-10">
+              <h2 className="mb-4 w-fit px-4 py-1 text-sm text-black">
+                {item.badge}
+              </h2>
 
-            <p className="text-xl mb-4">
-              {item.title}
-            </p>
+              <p className="mb-4 text-xl">{item.title}</p>
 
-            <div className="text-sm  prose prose-sm dark:prose-invert">
-              {item?.image && (
-                <Image
-                  src={item.image}
-                  alt="blog thumbnail"
-                  height="1000"
-                  width="1000"
-                  className="rounded-none mb-10 object-cover"
-                />
-              )}
-              {item.description}
+              <div className="prose prose-sm dark:prose-invert text-sm">
+                {item?.image && (
+                  <Image
+                    src={item.image}
+                    alt="blog thumbnail"
+                    height="1000"
+                    width="1000"
+                    className="mb-10 rounded-none object-cover"
+                  />
+                )}
+                {item.description}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </TracingBeam>
+          ))}
+        </div>
+      </TracingBeam>
     </>
   );
 }
