@@ -1,6 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import SaveGreenImage from "@public/images/savegreen.png";
+import { PersonStanding, Trees, UserRound } from "lucide-react";
+import Plant from "@public/svgr/Plant";
+import GrowUpPlant from "./GrowUpPlant";
 
 function CommunityContributions() {
   return (
@@ -29,10 +32,27 @@ function CommunityContributions() {
             className="w-100"
           />
         </div>
-        <div className="absolute top-[260px] z-20 flex w-full translate-y-[-20%] justify-center">
-          <div className="fotn flex h-[70px] w-[70px] items-center justify-center rounded-full bg-primary text-center">
-            <p className="font-bold text-white">Trong Cay</p>
+        <div className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center">
+          <div className="relative z-20 flex h-[75px] w-[75px] cursor-pointer items-center justify-center rounded-full bg-primary text-center transition-all hover:bg-[#3c6e3e]">
+            <p className="font-bold text-white">
+              <Trees size={30} />
+            </p>
           </div>
+          <div className="absolute top-[7.5px] h-[60px] w-[60px] animate-ping rounded-full border-2 border-primary"></div>
+        </div>
+
+        <div className="container relative bottom-[30px] z-20">
+          <div className="flex flex-row justify-center  items-center gap-2">
+            <span className="w-[24px] h-[24px] bg-primary flex items-center justify-center  rounded-full">
+              <UserRound className="text-white" size={18} />
+            </span>
+            <p className="text-center font-semibold">
+              2.122 Người đã tưới cây cho cây xanh
+            </p>
+          </div>
+          <h1 className="text-center text-3xl font-bold mt-6">
+            Biến đổi cuộc sống, từng bước xanh
+          </h1>
         </div>
       </div>
     </div>
