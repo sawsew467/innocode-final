@@ -1,15 +1,44 @@
-import Image from "next/image";
-import React from "react";
+'use client'
+import useModal from "@/hooks/useModal";
 import SaveGreenImage from "@public/images/savegreen.png";
-import { PersonStanding, Trees, UserRound } from "lucide-react";
-import Plant from "@public/svgr/Plant";
-import GrowUpPlant from "./GrowUpPlant";
+import { Trees, UserRound } from "lucide-react";
+import Image from "next/image";
+import ContributeDialog from "./ContributeDialog";
+import MessageDialog from "./MessageDialog";
+import { useEffect } from "react";
+import useStore from "@/store";
 
+const message = `<p style="max-width: 450px; border-radius: 8px; background-color: #f0f0f0; padding: 16px; text-align: center; font-weight: 600;">
+    Kính gửi tới bạn,
+    <br /> <br />
+    <span style="font-style: italic;">
+        Mẹ Trái Đất cần chúng ta bảo vệ để giữ gìn sự sống và vẻ đẹp màu xanh của hành tinh. Cảm ơn bạn đã cùng chung tay với chúng tôi để bảo vệ môi trường dù chỉ là hành động nhỏ. Mỗi người chúng ta đều có ý thức và tình cảm với thiên nhiên, đó sẽ là vũ khí tốt nhất cho chúng ta có thể giữ vững một Trái Đất xanh đẹp và bền vững. Cảm ơn bạn đã quan tâm!
+    </span>
+    <br /> <br /> Trân trọng,
+        <br/> FPT Education
 
+</p>
+`;
 
 function CommunityContributions() {
+  const {visible, close, open} = useModal();
+  const {openMessageDiaolog, setOpenMessageDiaolog} = useStore((state) => ({
+    openMessageDiaolog: state.openMessageDiaolog,
+    setOpenMessageDiaolog: state.setOpenMessageDiaolog
+  }));
+
+  useEffect(() => {
+    if(openMessageDiaolog) {
+      const timer = setTimeout(() => {
+        setOpenMessageDiaolog(false);
+      }, 6000);
+      return () => clearTimeout(timer);
+    }
+  }, [openMessageDiaolog])
+  
   return (
     <div
+      
       className="relative w-full py-20"
       style={{
         backgroundImage:
@@ -34,28 +63,31 @@ function CommunityContributions() {
             className="w-100"
           />
         </div>
-        {/* <div className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center">
+        <div
+          onClick={open}
+        className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center">
           <div className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]">
             <p className="font-bold text-white">
               <Trees size={38} />
             </p>
           </div>
           <div className="absolute top-[12px] h-[60px] w-[60px] animate-ping rounded-full border-2 border-primary"></div>
-        </div> */}
+        </div>
 
         
-
-        <div className="container relative bottom-[30px] z-20">
+        <ContributeDialog closeModal={close} visible={visible} openModal={open}/>
+        <MessageDialog htmlMessage={message}/>
+        <div className="container relative bo/ttom-[30px] z-20">
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex items-center justify-center gap-2">
               <span className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-primary">
                 <UserRound className="text-white" size={18} />
               </span>
               <p className="text-center font-semibold">
-                2.122 Người đã tưới cây cho cây xanh
+                2.122 Người đã tưới nước cho cây xanh
               </p>
             </div>
-            <p>(Nhấn vào biểu tượng cây xanh để đóng góp)</p>
+            <p>(Nhấn vào biểu tượng cây xanh để tưới nước)</p>
           </div>
           <h1 className="mt-6 text-center text-[42px] font-bold">
             Biến đổi cuộc sống, từng bước xanh

@@ -10,40 +10,97 @@ import PlantThree from "@public/svgr/Prames/PlantThree";
 import PlantTwo from "@public/svgr/Prames/PlantTwo";
 import React from "react";
 
-function GrowUpPlant() {
+interface IProps {
+  isLove: boolean;
+  showText: string;
+}
+
+function GrowUpPlant({ isLove, showText }: IProps) {
   return (
     <div className="h-fit w-fit">
       <div className="relative">
         <Plant></Plant>
-        <div className="animate-fade absolute bottom-[42px] left-[126px]">
-          <PlantOne width={175} />
-        </div>
-        <div className="animate-fade absolute bottom-[86px] left-[190px]">
-          <PlantTwo width={32} />
-        </div>
-        <div className="animate-fade absolute bottom-[99.5px] left-[34px]">
-          <PlantThree width={185} />
-        </div>
-        <div className="animate-fade absolute bottom-[92.5px] left-[191px]">
-          <PlantFour width={171} />
-        </div>
-        <div className="animate-fade absolute bottom-[140px] left-[194.5px]">
-          <PlantFive width={166} />
-        </div>
-        <div className="animate-fade absolute bottom-[167px] left-[55.5px]">
-          <PlantSix width={150} />
-        </div>
-        <div className="animate-fade absolute bottom-[178px] left-[106px]">
-          <PlantSeven width={105} />
-        </div>
-        <div className="animate-fade absolute bottom-[210px] left-[197px]">
-          <PlantEight width={94} />
-        </div>
-        <div className="animate-fade absolute bottom-[228px] left-[155px]">
-          <PlantNine width={102
+        {isLove && (
+          <div className="absolute bottom-[42px] left-[126px] animate-fade">
+            <PlantOne width={175} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[86px] left-[190px] animate-fade"
+            style={{ animationDelay: "300ms" }}
+          >
+            <PlantTwo width={32} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[99.5px] left-[34px] animate-fade"
+            style={{ animationDelay: "600ms" }}
+          >
+            <PlantThree width={185} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[92.5px] left-[191px] animate-fade"
+            style={{ animationDelay: "900ms" }}
+          >
+            <PlantFour width={171} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[140px] left-[194.5px] animate-fade"
+            style={{ animationDelay: "1200ms" }}
+          >
+            <PlantFive width={166} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[167px] left-[55.5px] animate-fade"
+            style={{ animationDelay: "1500ms" }}
+          >
+            <PlantSix width={150} />
+          </div>
+        )}
+        {isLove && (
+          <div
+            className="absolute bottom-[178px] left-[106px] animate-fade"
+            style={{ animationDelay: "1800ms" }}
+          >
+            <PlantSeven width={105} />
+          </div>
+        )}
 
-          } />
-        </div>
+        {isLove && (
+          <div
+            className="absolute bottom-[210px] left-[197px] animate-fade"
+            style={{ animationDelay: "2400ms" }}
+          >
+            <PlantEight width={94} />
+          </div>
+        )}
+
+        {isLove && (
+          <div
+            className="absolute bottom-[228px] left-[155px] animate-fade"
+            style={{ animationDelay: "2900ms" }}
+          >
+            <PlantNine width={102} />
+          </div>
+        )}
+
+        {
+          isLove && (
+            <div
+              className="absolute bottom-[10px]  animate-fade w-full"
+            >
+              <p className="text-center text-primary">{showText}</p>
+            </div>
+          )
+        }
       </div>
     </div>
   );

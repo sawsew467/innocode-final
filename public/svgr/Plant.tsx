@@ -15,7 +15,7 @@ const Plant: React.FC<IconProps> = ({ color = 'currentColor', size, width = size
 Created by potrace 1.10, written by Peter Selinger 2001-2011
 </metadata>
 <g transform="translate(0.000000,300.000000) scale(0.050000,-0.050000)"
-fill="#000" stroke="none">
+fill="#fff" stroke="none">
 <path d="M3062 5401 c-19 -12 -23 -37 -14 -86 10 -57 3 -81 -48 -145 -33 -41
 -60 -97 -60 -123 0 -62 -28 -60 -57 4 -29 65 -30 159 0 207 27 43 8 109 -28
 97 -16 -6 -23 -40 -20 -92 6 -93 -17 -108 -51 -33 -23 50 -71 66 -93 32 -19
