@@ -11,13 +11,18 @@ import Modals from "./modals";
 function MuseumModule() {
   const router = useRouter();
   const [isShowDrawer, setIsShowDrawer] = useState(false);
+  const [content, setContent] = useState({});
 
   return (
     <>
       <FloatButtons />
       <section className="relative h-screen w-screen">
-        <Modals isShowDrawer={isShowDrawer} setIsShowDrawer={setIsShowDrawer} />
-        <Experience setIsShowDrawer={setIsShowDrawer} />
+        <Modals
+          isShowDrawer={isShowDrawer}
+          setIsShowDrawer={setIsShowDrawer}
+          content={content}
+        />
+        <Experience setIsShowDrawer={setIsShowDrawer} setContent={setContent} />
       </section>
     </>
   );

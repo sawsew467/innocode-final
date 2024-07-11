@@ -1,33 +1,41 @@
 import { Html } from "@react-three/drei";
 import Image from "next/image";
 import React from "react";
-
-function Frame() {
+import useModal from "@/hooks/useModal";
+function Frame({ data, setIsShowDrawer, setContent }: any) {
   return (
     <>
       <Html
-        position={[16, 8, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
+        position={[data?.positionX, data?.positionY, data?.positionZ]}
+        rotation={[data?.rotationX, data?.rotationY, data?.rotationZ]}
         transform
+        scale={data?.scale}
         zIndexRange={[0, 0]}
 
         // occlude="blending"
       >
-        <div className="flex flex-col items-center gap-10 bg-none">
+        <div className="flex flex-col items-center gap-5 bg-none">
+          <p className="select-none font-time text-xl font-semibold">
+            Năm {data.year}
+          </p>
           <div className="select-none bg-slate-950 p-2">
-            <div className="bg-white p-4">
+            <div
+              onClick={(e) => {
+                setIsShowDrawer(true);
+                setContent(data);
+                e.stopPropagation();
+              }}
+              className="bg-white p-4"
+            >
               <Image
                 alt=""
-                src={"/images/banner.png"}
+                src={data.bannerUrl}
                 width={1920}
                 height={1080}
-                className="w-[400px] object-cover"
+                className="pointer-events-none aspect-video w-[400px] object-cover"
               />
             </div>
           </div>
-          <p className="font-time select-none text-xl font-semibold">
-            Năm 1999
-          </p>
         </div>
       </Html>
     </>
