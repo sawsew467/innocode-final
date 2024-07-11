@@ -1,3 +1,4 @@
+import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const {
@@ -86,10 +87,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "alternate-img": {
+          "0%": { transform: "translateY(-20px)" },
+          "50%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-20px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "alternate": "alternate-img 3s linear infinite",
       },
       boxShadow: {
         custom: "0px 3px 10px 0px rgba(0, 0, 0, 0.13)",
