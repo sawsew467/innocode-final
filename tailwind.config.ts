@@ -25,6 +25,7 @@ const config = {
         "2000": "2000ms",
         "3000": "3000ms",
         "5000": "5000ms",
+        "50000": "50000ms",
       },
       colors: {
         border: "hsl(var(--border))",

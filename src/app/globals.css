@@ -79,7 +79,6 @@
   }
 }
 
-/* Change the color of the text when it is selected */
 ::selection {
   background: #569f58; /* Background color of the selected text */
   color: #ffffff; /* Text color of the selected text */
