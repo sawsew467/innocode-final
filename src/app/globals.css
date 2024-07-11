@@ -93,3 +93,7 @@
   color: #ffffff; /* Text color of the selected text */
 }
 
+.transition-card {
+  transition: .5s ease;
+}
+
