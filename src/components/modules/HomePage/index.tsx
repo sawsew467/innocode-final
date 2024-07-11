@@ -1,4 +1,6 @@
+import CommonQuestions from "./CommonQuestions";
 import CommonSection from "./CommonSection";
+import CommunityContributions from "./CommunityContributions";
 import HeroSection from "./HeroSection";
 import IntroductionSection from "./IntroductionSection";
 
@@ -8,6 +10,8 @@ function HomePageModule() {
       {/* <CommonSection /> */}
       <HeroSection />
       <IntroductionSection />
+      <CommunityContributions/>
+      <CommonQuestions/>
     </>
   );
 }
