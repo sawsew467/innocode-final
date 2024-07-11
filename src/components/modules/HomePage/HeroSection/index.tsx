@@ -1,12 +1,14 @@
 import Image from "next/image";
-
-import banner from "@public/images/banner.png";
-import earth from "@public/images/circle-earth.png";
+import Link from "next/link";
+import { ArrowRight, Earth } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { ArrowRight, Earth } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+
 import ArrowSubcribe from "@public/svgr/ArrowSubcribe";
+import banner from "@public/images/banner.png";
+import earth from "@public/images/circle-earth.png";
 
 function HeroSection() {
   return (
@@ -44,12 +46,14 @@ function HeroSection() {
               Trí tuệ nhân tạo - Bán dẫn - Xe điện - Chuyển đổi số - Môi trường
               xanh
             </h5>
-            <Button>
-              <div className="flex items-center gap-2">
-                <span>Khám phá</span>
-                <ArrowRight width={16} />
-              </div>
-            </Button>
+            <Link href={"trien-lam"}>
+              <Button>
+                <div className="flex items-center gap-2">
+                  <span>Khám phá</span>
+                  <ArrowRight width={16} />
+                </div>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

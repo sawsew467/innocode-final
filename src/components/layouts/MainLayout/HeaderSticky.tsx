@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import useDetectScroll from "@smakss/react-scroll-direction";
+import Link from "next/link";
 
 const items = ["Về chúng tôi", "Thành tựu", "Nhân vật", "Cộng đồng"];
 
@@ -41,7 +42,7 @@ function HeaderSticky() {
         isInHeader && "-translate-y-full",
       )}
     >
-      <div className="flex h-full w-full max-w-[1440px] items-center justify-between px-20 text-white">
+      <div className="mx-auto flex h-full w-full max-w-[1440px] items-center justify-between px-20 text-white">
         <Image src={logo} alt="" height={52} />
         <nav>
           <ul className="flex gap-10">
@@ -74,12 +75,14 @@ function HeaderSticky() {
         </nav>
         <div className="flex items-center gap-5">
           <Search width={20} className="text-black" />
-          <Button>
-            <div className="flex items-center gap-2">
-              <span>Khám phá</span>
-              <ArrowRight width={16} />
-            </div>
-          </Button>
+          <Link href={"trien-lam"}>
+            <Button>
+              <div className="flex items-center gap-2">
+                <span>Khám phá</span>
+                <ArrowRight width={16} />
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
