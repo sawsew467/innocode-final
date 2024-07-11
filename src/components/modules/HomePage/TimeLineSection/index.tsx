@@ -314,7 +314,9 @@ const TimeLineSection = () => {
       onMouseLeave={() => setNavigation("over")}
       className="relative h-screen w-full cursor-none overflow-hidden"
     >
+      <div id="thanh-tuu"></div>
       <div className="absolute inset-0 z-[1] bg-black/60"></div>
+      <div className="absolute inset-0 z-0 bg-primary"></div>
       {navigation !== "over" && (
         <motion.span
           animate={{
@@ -537,6 +539,7 @@ const TimeLineSection = () => {
           </div>
         </div>
       </div>
+      <div id="nhan-vat"></div>
     </div>
   );
 };

@@ -87,6 +87,7 @@
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
 .comma-pos {
   top: -40px;
   left: -121px;
@@ -205,14 +206,22 @@
 
 /* For Firefox */
 ::-moz-selection {
-  background: #569f58; /* Background color of the selected text */
-  color: #ffffff; /* Text color of the selected text */
+  background: #569f58;
+  /* Background color of the selected text */
+  color: #ffffff;
+  /* Text color of the selected text */
 }
 
 .transition-card {
   transition: .5s ease;
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 .smooth-transition {
-  transition: height 0.3s ease-in-out; /* Adjust timing and easing function as needed */
+  transition: height 0.3s ease-in-out;
+  /* Adjust timing and easing function as needed */
 }

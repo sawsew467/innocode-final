@@ -2,6 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import { TextGenerateEffect } from "./text-moving";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 type InterfaceData = {
   title: string;
   value: string;
@@ -25,13 +26,26 @@ const Card = ({ tab }: { tab: InterfaceData }) => {
               />
             </div>
             <div className="relative flex flex-col content-between justify-between">
-              <Image
-                src="images/dedicated/comma.svg"
-                alt="comma-image"
-                width={200}
-                height={106}
-                className="comma-pos absolute z-[0] hidden opacity-50 lg:block"
-              />
+              <motion.span
+                animate={{
+                  y: [20, 0],
+                  opacity: [0.75, 1],
+                }}
+                transition={{
+                  type: "spring",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  duration: 2,
+                }}
+              >
+                <Image
+                  src="images/dedicated/comma.svg"
+                  alt="comma-image"
+                  width={200}
+                  height={106}
+                  className="comma-pos absolute z-[0] hidden opacity-50 lg:block"
+                />
+              </motion.span>
               <div className="z-[10] flex flex-col gap-8">
                 <div>
                   <h2 className="mt-5 pt-4 text-center text-4xl font-bold sm:leading-tight lg:text-start lg:text-6xl">
