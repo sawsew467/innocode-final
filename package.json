@@ -36,6 +36,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^18",
     "react-modal": "^3.16.1",
+    "react-share": "^5.1.0",
     "react-textarea-autosize": "^8.5.3",
     "tailwind-merge": "^2.4.0",
     "tailwind-scrollbar-hide": "^1.1.7",
