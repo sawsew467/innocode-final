@@ -121,7 +121,7 @@ const ContributorSection = () => {
                         width={400}
                         height={600}
                         alt="gallary"
-                        className="object-fille tran5s h-80 w-full"
+                        className="h-80 w-full object-cover"
                       />
 
                       <div className="caption absolute top-1/2 flex-col content-center text-center">

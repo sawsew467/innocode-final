@@ -17,13 +17,13 @@ function HomePageModule() {
       {/* <CommonSection />  */}
       <HeroSection />
       <IntroductionSection />
-      <CelebrationSection/>
-      <OurDirectionSection/>
+      <CelebrationSection />
+      <OurDirectionSection />
       <TimeLineSection />
-      <FeaturedMemberSession/>
-      <ContributorSection/>
-      <CommunityContributions/>
-      <CommonQuestions/>
+      <FeaturedMemberSession />
+      <ContributorSection />
+      <CommunityContributions />
+      <CommonQuestions />
     </>
   );
 }
