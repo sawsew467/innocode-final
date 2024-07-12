@@ -85,10 +85,11 @@ function CommunityContributions() {
           </motion.div>
         </span>
         <div
-          onClick={open}
           className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center"
         >
-          <div className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]">
+          <div className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]" 
+          onClick={open}
+          >
             <p className="font-bold text-white">
               <Trees size={38} />
             </p>

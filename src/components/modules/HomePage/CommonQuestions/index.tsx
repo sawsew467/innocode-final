@@ -59,7 +59,7 @@ function CommonQuestions() {
       <div className="container py-[60px]">
         <Title
           title=""
-          subtitle="Câu hỏi"
+          subtitle="Câu hỏi về FPT Education"
           align="center"
           className="mb-6"
         ></Title>
