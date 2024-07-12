@@ -22,7 +22,7 @@ function FloatButtons() {
 
   return (
     <>
-      <div className="fixed left-10 top-10 z-10">
+      <div className="fixed left-10 top-10 z-10 select-none">
         <Button className="bg-primary/60" onClick={() => router.push("/")}>
           <div className="flex items-center gap-2">
             <MoveLeft className="text-white" />

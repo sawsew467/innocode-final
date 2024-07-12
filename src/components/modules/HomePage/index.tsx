@@ -9,19 +9,21 @@ import IntroductionSection from "./IntroductionSection";
 import TimeLineSection from "./TimeLineSection";
 import OurDirectionSection from "@/components/modules/HomePage/OurDirectionSection";
 
+
+
 function HomePageModule() {
   return (
     <>
       {/* <CommonSection />  */}
       <HeroSection />
       <IntroductionSection />
-      <CelebrationSection/>
-      <OurDirectionSection/>
+      <CelebrationSection />
+      <OurDirectionSection />
       <TimeLineSection />
-      <FeaturedMemberSession/>
-      <ContributorSection/>
-      <CommunityContributions/>
-      <CommonQuestions/>
+      <FeaturedMemberSession />
+      <ContributorSection />
+      <CommunityContributions />
+      <CommonQuestions />
     </>
   );
 }

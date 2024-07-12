@@ -42,6 +42,7 @@ import melbourne_fpt from "@public/images/timeline/melbourne_fpt.jpg";
 import fpt_haiphong from "@public/images/timeline/fpt_haiphong.jpg";
 import fpt_bacninh from "@public/images/timeline/fpt_bacninh.jpg";
 import fpt_hanam from "@public/images/timeline/fpt_hanam.jpg";
+import useStore from "@/store";
 const slides = [
   {
     time: "1999",
@@ -231,6 +232,7 @@ const animate: any = {
 
 const TimeLineSection = () => {
   const [select, setSelect] = useState(0);
+  const setTargetSection = useStore((state: any) => state.setTargetSection);
   const [navigation, setNavigation] = useState<
     "left" | "right" | "mid" | "over"
   >("mid");
@@ -274,6 +276,13 @@ const TimeLineSection = () => {
         setViewed(true);
       }
     };
+    if (view)
+      setTargetSection({
+        aboutUs: false,
+        timeline: true,
+        featuredMember: false,
+        community: false,
+      });
     window.addEventListener("scrollend", handleView);
     return () => window.removeEventListener("scrollend", handleView);
   }, [view, isViewed]);

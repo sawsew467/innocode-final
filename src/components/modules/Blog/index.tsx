@@ -9,7 +9,7 @@ import Body from "./Body";
 import fpt from "@public/images/timeline/FPTU-CSVC1thumb.webp";
 export function BlogsModule({ data }: any) {
   return (
-    <div>
+    <div className="mt-24">
       <TracingBeam className="px-6">
         {/* <PortfolioDetailsTitle portfolio={null} /> */}
 

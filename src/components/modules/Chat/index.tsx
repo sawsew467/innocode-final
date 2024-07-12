@@ -18,6 +18,7 @@ import ChatFooter from "./ChatFooter";
 import { useEffect, useRef } from "react";
 
 import { useChat } from "ai/react";
+import Experience from "./Experience";
 
 interface ChildRef {
   handleCheck: (newMessage: string) => void;
@@ -38,17 +39,15 @@ function Chat() {
     },
   });
 
-  const handleSubmitUser = (data:string) => {
-    if (data.trim() !== '') {
-        append({ content: data, role: 'user' });
-        return true;
-       
+  const handleSubmitUser = (data: string) => {
+    if (data.trim() !== "") {
+      append({ content: data, role: "user" });
+      return true;
     }
     return false;
-};
+  };
 
   const chatParent = useRef<HTMLUListElement>(null);
-
 
   return (
     <div className="fixed bottom-10 right-20 z-50">
@@ -62,7 +61,7 @@ function Chat() {
         </DialogTrigger>
         <DialogContent
           close={false}
-          className="min-h-[600px] max-w-4xl bg-white/20 outline-none backdrop-blur-xl"
+          className="min-h-[600px] max-w-6xl bg-white/20 outline-none backdrop-blur-xl"
         >
           <div className="flex gap-5">
             <div className="flex flex-1 flex-col">
@@ -70,10 +69,12 @@ function Chat() {
                 <h5 className="font-title text-2xl text-white">Trợ lý ảo</h5>
                 <span className="text-white/70">Verson 1.0</span>
               </div>
-              <div className="flex-1"></div>
-              <div>
-                <Image src={logo} alt="" height={52} />
+              <div className="flex-1">
+                <Experience />
               </div>
+              {/* <div>
+                <Image src={logo} alt="" height={52} />
+              </div> */}
             </div>
             <div className="flex flex-[2] flex-col rounded-md bg-white">
               <ChatHeader />

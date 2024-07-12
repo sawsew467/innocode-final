@@ -12,6 +12,7 @@ import HistoryList from "../organisms/HistoryList";
 import { log } from "console";
 import { Message } from "ai";
 import { Volume2 } from "lucide-react";
+import useStore from "@/store";
 interface HistoryItem {
   id: number;
   text: string;
@@ -38,13 +39,16 @@ const TextToSpeedAI = forwardRef<ChildRef, TextToSpeedAIProps>((props, ref) => {
   const [apiKey, setApiKey] = useState("");
   const [text, setText] = useState("");
   const [model, setModel] = useState("tts-1");
-  const [voice, setVoice] = useState("alloy");
+  const [voice, setVoice] = useState("nova");
   const [speed, setSpeed] = useState(1);
   const [audioUrl, setAudioUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [currentlyPlaying, setCurrentlyPlaying] = useState<string | null>(null);
+
+  const setIsTalking = useStore((state: any) => state?.setIsTalking);
+
 
   useEffect(() => {
     const storedApiKey = localStorage.getItem("apiKey");
@@ -89,6 +93,8 @@ const TextToSpeedAI = forwardRef<ChildRef, TextToSpeedAIProps>((props, ref) => {
         throw new Error(errorData.message || "Failed to generate speech");
       }
 
+      setIsTalking(true);
+
       const audioBlob = await response.blob();
       const url = URL.createObjectURL(audioBlob);
       setAudioUrl(url);
@@ -113,6 +119,7 @@ const TextToSpeedAI = forwardRef<ChildRef, TextToSpeedAIProps>((props, ref) => {
 
   const handleEnded = () => {
     setCurrentlyPlaying(null);
+    // setIsTalking(false);
   };
 
   const handlePlay = (url: string) => {

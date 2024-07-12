@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Earth } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -11,10 +11,24 @@ import { Button } from "@/components/ui/button";
 import ArrowSubcribe from "@public/svgr/ArrowSubcribe";
 import banner from "@public/images/banner.png";
 import earth from "@public/images/circle-earth.png";
+import useStore from "@/store";
+import { useEffect, useRef } from "react";
 
 function HeroSection() {
+  const setTargetSection = useStore((state: any) => state.setTargetSection);
+  const ref = useRef(null);
+  const view = useInView(ref);
+  useEffect(() => {
+    if (view)
+      setTargetSection({
+        aboutUs: true,
+        timeline: false,
+        featuredMember: false,
+        community: false,
+      });
+  }, [view]);
   return (
-    <div className="relative h-[calc(100vh-0px)] overflow-hidden">
+    <div ref={ref} className="relative h-[calc(100vh-0px)] overflow-hidden">
       <div id="ve-chung-toi"></div>
       <Image
         alt=""
