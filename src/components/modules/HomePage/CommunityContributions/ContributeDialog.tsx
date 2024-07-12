@@ -44,7 +44,7 @@ function ContributeDialog({ visible, openModal, closeModal }: IProps) {
       }}
       contentLabel="Example Modal"
     >
-      <div className="flex w-full animate-fade flex-col justify-between gap-0 scrollbar-hide">
+      <div className="animate-fade scrollbar-hide flex w-full flex-col justify-between gap-0">
         <div className="flex w-full flex-row justify-between">
           <h1 className="w-full text-center text-[32px] font-bold text-primary">
             SAVE GREEN
@@ -52,18 +52,18 @@ function ContributeDialog({ visible, openModal, closeModal }: IProps) {
         </div>
         {!isStart && (
           <p className="mt-4 text-center">
-            Thực hiện động tác thay hình "trái tim 💚" để thể hiện tình yêu của
-            bạn đối với mẹ thiên nhiên !{" "}
+            Thực hiện động tác thay hình &quot;trái tim 💚&quot; để thể hiện
+            tình yêu của bạn đối với mẹ thiên nhiên !{" "}
           </p>
         )}
         {isStart && (
-          <p className="mt-4 text-center bg-background rounded-md p-2 font-semibold">
-            Giữ nguyên tư thế hình "Trái tim 💚" để giúp cây xanh sắc và bạn sẽ
-            nhận được thông điệp từ chúng tôi!
+          <p className="mt-4 rounded-md bg-background p-2 text-center font-semibold">
+            Giữ nguyên tư thế hình &quot;Trái tim 💚&quot;để giúp cây xanh sắc
+            và bạn sẽ nhận được thông điệp từ chúng tôi!
           </p>
         )}
       </div>
-      <div className="w-full animate-fade">
+      <div className="animate-fade w-full">
         {/* Start */}
         {!isStart && (
           <div className="mt-4 flex w-full items-center justify-center p-4">
@@ -84,38 +84,42 @@ function ContributeDialog({ visible, openModal, closeModal }: IProps) {
         {!isStart && (
           <div className="flex w-full items-center justify-center">
             <div className="relative flex h-fit w-fit flex-col gap-4 rounded-lg border-4 border-background p-[20px]">
-              <div className="flex w-full animate-fade-down items-center justify-center gap-2">
+              <div className="animate-fade-down flex w-full items-center justify-center gap-2">
                 <Info className="text-primary" />
                 <p>Hướng dẫn</p>
               </div>
               <div className="flex flex-row gap-4">
-                <div className="flex animate-fade-up flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
+                <div className="animate-fade-up flex flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
                   <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary font-bold text-white">
                     <p>1</p>
                   </div>
                   <div>
-                    <p className="max-w-[220px]">Nhấn vào bút "Bắt đầu"</p>
+                    <p className="max-w-[220px]">
+                      Nhấn vào bút &quot;Bắt đầu&quot;
+                    </p>
                   </div>
                 </div>
-                <div className="flex animate-fade-up flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
+                <div className="animate-fade-up flex flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
                   <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary font-bold text-white">
                     <p>2</p>
                   </div>
                   <div>
-                    <p className="max-w-[220px]">Tạo cử chỉ tay "Thả tim 🫶"</p>
+                    <p className="max-w-[220px]">
+                      Tạo cử chỉ tay &quot;Thả tim 🫶&quot;
+                    </p>
                   </div>
                 </div>
-                <div className="flex animate-fade-up flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
+                <div className="animate-fade-up flex flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
                   <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary font-bold text-white">
                     <p>3</p>
                   </div>
                   <div>
                     <p className="max-w-[220px]">
-                      Giữ tư thế "🫶" trong 4 giây
+                      Giữ tư thế &quot;🫶&quot; trong 4 giây
                     </p>
                   </div>
                 </div>
-                <div className="flex animate-fade-up flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
+                <div className="animate-fade-up flex flex-col items-center justify-center gap-2 rounded-lg p-2 transition-all hover:bg-background">
                   <div className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary font-bold text-white">
                     <p>4</p>
                   </div>
