@@ -9,30 +9,31 @@ import { cn } from "@/lib/utils";
 import useDetectScroll from "@smakss/react-scroll-direction";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useStore from "@/store";
 
 const items = [
-  { label: "Về chúng tôi", value: "ve-chung-toi" },
-  { label: "Thành tựu", value: "thanh-tuu" },
-  { label: "Nhân vật", value: "nhan-vat" },
-  { label: "Cộng đồng", value: "cong-dong" },
+  { label: "Về chúng tôi", value: "ve-chung-toi", getTarget: "aboutUs" },
+  { label: "Thành tựu", value: "thanh-tuu", getTarget: "timeline" },
+  { label: "Nhân vật", value: "nhan-vat", getTarget: "featuredMember" },
+  { label: "Cộng đồng", value: "cong-dong", getTarget: "community" },
 ];
 
 function HeaderSticky() {
-  const [selected, setSelected] = useState(items[0].label);
+  const [selected, setSelected] = useState("");
   const [isInHeader, setIsInHeader] = useState(true);
-
+  const targetSection = useStore((state: any) => state.targetSection);
   const router = useRouter();
 
   const { scrollDir } = useDetectScroll();
 
   const handleScroll = useCallback(() => {
+    setSelected("");
     if (window.scrollY > 10) {
       setIsInHeader(false);
     } else {
       setIsInHeader(true);
     }
   }, []);
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -64,14 +65,18 @@ function HeaderSticky() {
                 >
                   <span
                     className={cn(
-                      "h-2 w-3 rounded-bl-full rounded-tl-full bg-primary transition-all",
-                      selected === item.label ? "opacity-100" : "opacity-0",
+                      "h-2 w-3 rounded-bl-full rounded-tl-full bg-primary transition-all duration-500",
+                      selected === item.label || targetSection[item.getTarget]
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                   <span
                     className={cn(
-                      "text-sm uppercase transition-all",
-                      selected === item.label ? "text-primary" : "text-black",
+                      "text-sm uppercase transition-all duration-500",
+                      selected === item.label || targetSection[item.getTarget]
+                        ? "text-primary"
+                        : "text-black",
                     )}
                   >
                     {item.label}

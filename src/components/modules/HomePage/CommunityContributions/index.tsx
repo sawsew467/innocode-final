@@ -5,9 +5,9 @@ import { Trees, UserRound } from "lucide-react";
 import Image from "next/image";
 import ContributeDialog from "./ContributeDialog";
 import MessageDialog from "./MessageDialog";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useStore from "@/store";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 const message = `<p style="max-width: 450px; border-radius: 8px; background-color: #f0f0f0; padding: 16px; text-align: center; font-weight: 600;">
     Kính gửi tới bạn,
     <br /> <br />
@@ -26,6 +26,18 @@ function CommunityContributions() {
     openMessageDiaolog: state.openMessageDiaolog,
     setOpenMessageDiaolog: state.setOpenMessageDiaolog,
   }));
+  const setTargetSection = useStore((state: any) => state.setTargetSection);
+  const ref = useRef(null);
+  const view = useInView(ref);
+  useEffect(() => {
+    if (view)
+      setTargetSection({
+        aboutUs: false,
+        timeline: false,
+        featuredMember: false,
+        community: true,
+      });
+  }, [view]);
 
   useEffect(() => {
     if (openMessageDiaolog) {
@@ -37,7 +49,7 @@ function CommunityContributions() {
   }, [openMessageDiaolog]);
 
   return (
-    <div className="relative w-full py-[60px]">
+    <div ref={ref} className="relative w-full py-[60px]">
       <div id="cong-dong"></div>
       <div
         className="absolute inset-0"
@@ -84,11 +96,10 @@ function CommunityContributions() {
             />
           </motion.div>
         </span>
-        <div
-          className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center"
-        >
-          <div className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]" 
-          onClick={open}
+        <div className="absolute top-[235px] z-20 flex w-full translate-y-[-20%] cursor-pointer justify-center">
+          <div
+            className="relative z-20 flex h-[85px] w-[85px] cursor-pointer items-center justify-center rounded-full bg-[#305531] text-center transition-all hover:bg-[#4d8b4f]"
+            onClick={open}
           >
             <p className="font-bold text-white">
               <Trees size={38} />

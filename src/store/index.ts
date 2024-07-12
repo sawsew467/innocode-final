@@ -13,6 +13,13 @@ interface IState {
     z: number;
   };
 
+  targetSection: {
+    aboutUs: boolean;
+    timeline: boolean;
+    featuredMember: boolean;
+    community: boolean;
+  };
+
   isTalking: boolean;
 }
 
@@ -30,10 +37,27 @@ const useStore = create<IState>((set) => ({
     y: 0,
     z: 0,
   },
+  targetSection: {
+    aboutUs: true,
+    timeline: false,
+    featuredMember: false,
+    community: false,
+  },
   setTargetPoint: (point: { x: number; y: number; z: number }) =>
     set(() => ({
       targetPoint: {
         ...point,
+      },
+    })),
+  setTargetSection: (target: {
+    aboutUs: boolean;
+    timeline: boolean;
+    featuredMember: boolean;
+    community: boolean;
+  }) =>
+    set(() => ({
+      targetSection: {
+        ...target,
       },
     })),
   setOpenMessageDiaolog: (openMessageDiaolog: boolean) =>

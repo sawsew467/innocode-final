@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, Search } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -11,16 +11,29 @@ import { Button } from "@/components/ui/button";
 import logo from "@public/images/logo.png";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useStore from "@/store";
 const items = [
-  { label: "Về chúng tôi", value: "ve-chung-toi" },
-  { label: "Thành tựu", value: "thanh-tuu" },
-  { label: "Nhân vật", value: "nhan-vat" },
-  { label: "Cộng đồng", value: "cong-dong" },
+  { label: "Về chúng tôi", value: "ve-chung-toi", getTarget: "aboutUs" },
+  { label: "Thành tựu", value: "thanh-tuu", getTarget: "timeline" },
+  { label: "Nhân vật", value: "nhan-vat", getTarget: "featuredMember" },
+  { label: "Cộng đồng", value: "cong-dong", getTarget: "community" },
 ];
 
 function Header() {
   const [selected, setSelected] = useState(items[0].label);
   const router = useRouter();
+  const targetSection = useStore((state: any) => state.targetSection);
+
+  const handleScroll = () => {
+    setSelected("");
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -42,13 +55,17 @@ function Header() {
                     <span
                       className={cn(
                         "h-2 w-3 rounded-bl-full rounded-tl-full bg-primary transition-all",
-                        selected === item.label ? "opacity-100" : "opacity-0",
+                        selected === item.label || targetSection[item.getTarget]
+                          ? "opacity-100"
+                          : "opacity-0",
                       )}
                     />
                     <span
                       className={cn(
                         "text-sm font-medium uppercase transition-all",
-                        selected === item.label ? "text-primary" : "text-white",
+                        selected === item.label || targetSection[item.getTarget]
+                          ? "text-primary"
+                          : "text-white",
                       )}
                     >
                       {item.label}
