@@ -54,6 +54,7 @@ function GrowUpPlant({ isLove, closeModal, setIsOpenCamera }: IProps) {
   const { setOpenMessageDiaolog } = useStore((state) => ({
     setOpenMessageDiaolog: state.setOpenMessageDiaolog,
   }));
+
   useEffect(() => {
     if (currentStage === plants.length) {
       setTimeout(() => {
